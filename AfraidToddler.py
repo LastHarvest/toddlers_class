@@ -11,12 +11,16 @@ class AfraidToddler(Toddler):
 
     def collect_resource(self,candy):
         if self.position == candy :
-            self.Cooldown = self.hunger
             self.update_Table(True)
 
 
-    def Strategie(self, teacher):
-        self.move_player_to_table()
+    def Strategie(self, candy, teacher):
+        if candy == self.pos():
+            self.collect_resource(self,candy)
+        elif self.get_position != self.get_Pos_table() :
+            self.move_player_to_table()
+        else :
+            self.move_player_to_candy()
             
 
 
