@@ -27,12 +27,23 @@ class Toddler(ABC):
     def get_direction(self):
         return self.direction
     
+    def get_Pos_table(self):
+        return self.Pos_table
+
 
     #Setters
     def update_pos(self, new_position):
         """Update the agent's position."""
         self.position = new_position
+
+    def update_Pos_table(self, pos):
+        self.Pos_table = pos
     
+    def update_direction(self, dir):
+        self.direction = dir
+    
+    def update_Table(self, state):
+        self.Table = state
 
 
     # Déplacements
@@ -49,19 +60,18 @@ class Toddler(ABC):
     def move_right(self):
         self.position = (self.position[0] + 1, self.position[1])
         self.direction="right"
+    
 
-    
-    
     # autres fonctions
-
     def get_distance_resource(self, teacher):
         pos_student = self.get_pos()
         pos_teacher = teacher.get_pos()
         return math.sqrt((pos_teacher[0] - pos_student[0])**2 + (pos_teacher[1] - pos_student[1])**2)
 
+
     # fonctions abstraites
     @abstractmethod
-    def collect_resource(self, resource):
+    def collect_resource(self,bonbon):
         pass
 
     @abstractmethod
@@ -69,7 +79,7 @@ class Toddler(ABC):
         pass
 
     @abstractmethod
-    def move_player_to_bonbon(self, teacher):
+    def move_player_to_bonbon(self, bonbon):
         pass
 
     
