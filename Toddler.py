@@ -87,7 +87,7 @@ class Toddler(Human):
         pass
 
     @abstractmethod
-    def Strategie(self, teacher):
+    def Strategie(self, teacher, candy):
         pass
 
     @abstractmethod
