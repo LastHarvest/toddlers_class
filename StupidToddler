@@ -2,10 +2,11 @@ import math
 from Toddler import Toddler
 
 
+
 class StupidToddler(Toddler):
 
-    def __init__(self, id, Position, Table, Pos_table, direction, Faim, Cooldown):
-        super().__init__(id, Position, Table, direction)
+    def __init__(self, position, id,  Table, Pos_table, direction, Faim, Cooldown):
+        super().__init__(position, id, Table, direction)
         self.Faim = Faim
         self.Cooldown = Cooldown
 
