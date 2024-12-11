@@ -37,7 +37,7 @@ class StupidToddler(Toddler):
         if self.Cooldown == 0 and self.get_Table()==True:
             self.update_Table() = False
         elif self.Cooldown == 0 and self.get_Table()==False:
-            self.move_player_to_bonbon
+            self.move_player_to_bonbon(bonbon)
         else :
             self.add_Cooldown()
             
