@@ -23,8 +23,8 @@ class Toddler(Human):
     
     def get_Table(self):
         """Return the current points of the agent."""
-        return self.table
-    
+        return self.Table
+
     def get_direction(self):
         return self.direction
     
@@ -66,7 +66,8 @@ class Toddler(Human):
     # autres fonctions
     def get_distance_resource(self, pos):
         pos_student = self.get_pos()
-        return math.sqrt((pos[0] - pos_student[0])**2 + (pos[1] - pos_student[1])**2)
+        pos_teacher = teacher.get_pos()
+        return math.sqrt((pos_teacher[0] - pos_student[0])**2 + (pos_teacher[1] - pos_student[1])**2)
 
     def move_player_to_table(self):
         s = self.get_pos()
@@ -87,11 +88,11 @@ class Toddler(Human):
         pass
 
     @abstractmethod
-    def Strategie(self, teacher, candy):
+    def Strategie(self, teacher):
         pass
 
     @abstractmethod
-    def move_player_to_candy(self,teacher, candy):
+    def move_player_to_bonbon(self, bonbon):
         pass
 
     
