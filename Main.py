@@ -3,17 +3,18 @@ import sys
 from time import sleep
 import time
 from Game import *
+
 # Initialize pygame
 pygame.init()
 
-window_size = 700
-grid_size = 7
+window_size = 900
+grid_size = 13
 cell_size = window_size // grid_size
 
 screen = pygame.display.set_mode((window_size, window_size))
 pygame.display.set_caption('Game Time Display')
 
-game_instance = Game()
+game_instance = Game(grid_size)
 font = pygame.font.Font(None, 27)
 
 def draw_text_with_contour(text, font, text_color, contour_color, x, y):
@@ -44,18 +45,27 @@ def draw_candy():
     pixel_pos = (candy_pos[0] * cell_size, candy_pos[1] * cell_size)
     pygame.draw.rect(screen, (0, 255, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
 
-
 def draw_players():
     """Draw the toddlers and the teacher on the grid."""
+    initial_positions = game_instance.get_initial_positions()
+    for pos in initial_positions:
+        pixel_pos = (pos[0] * cell_size, pos[1] * cell_size)
+        pygame.draw.rect(screen, (255, 255, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
+
+    teacher_initial_pos = game_instance.get_teacher().get_pos_table()
+    pixel_pos = (teacher_initial_pos[0] * cell_size, teacher_initial_pos[1] * cell_size)
+    pygame.draw.rect(screen, (255, 255, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
+
     for toddler in game_instance.get_toddlers():
         toddler_pos = toddler.get_position()
-        pixel_pos = (toddler_pos[0] * cell_size + cell_size // 2, toddler_pos[1] * cell_size + cell_size // 2)
-        pygame.draw.circle(screen, (0, 0, 255), pixel_pos, cell_size // 3)
+        pixel_pos = (toddler_pos[0] * cell_size, toddler_pos[1] * cell_size)
+        pygame.draw.circle(screen, (0, 0, 255), (pixel_pos[0] + cell_size // 2, pixel_pos[1] + cell_size // 2), cell_size // 3)
 
     teacher = game_instance.get_teacher()
     teacher_pos = teacher.get_position()
     pixel_pos = (teacher_pos[0] * cell_size, teacher_pos[1] * cell_size)
-    pygame.draw.rect(screen, (255, 0, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
+    pygame.draw.circle(screen, (255, 192, 203), (pixel_pos[0] + cell_size // 2, pixel_pos[1] + cell_size // 2), cell_size // 3)
+
 
 def draw_end_game():
     """Draw the end game screen with players' points."""
@@ -101,10 +111,9 @@ while True:
                 rect = pygame.Rect(x, y, cell_size, cell_size)
                 pygame.draw.rect(screen, (0, 0, 0), rect, 1)
 
-        # draw_resources()
-#        draw_player_points()
         draw_players()
         draw_candy()
+
         # Render the time text
         time_text = font.render(f"Time: {game_instance.get_time()}", True, (0, 0, 0))
         screen.blit(time_text, (10, 10))

@@ -3,7 +3,7 @@ import math
 
 class Human(ABC):
     def __init__(self,id: int, position: tuple, direction: str, pos_table: tuple):
-        self.__id = id
+        self._id = id
         self._position = position
         self._direction = direction
         self._pos_table = pos_table
@@ -17,8 +17,8 @@ class Human(ABC):
         position = self._position
         return math.sqrt((other[0] - position[0]) ** 2 + (other[1] - position[1]) ** 2)
 
-
-
+    def at_table(self):
+        self._table = (self._position == self._pos_table)
 
     def get_id(self) -> int:
         return self._id
@@ -48,10 +48,11 @@ class Human(ABC):
         self._pos_table = pos_table
 
 
-    def move_up(self):
+    def move_down(self):
+        print("Teacher")
         self._position = (self._position[0], self._position[1] + 1)
 
-    def move_down(self):
+    def move_up(self):
         self._position = (self._position[0], self._position[1] - 1)
 
     def move_left(self):
@@ -65,12 +66,12 @@ class Human(ABC):
     def move_to(self, goal):
         s = self._position
         g = goal.get_position()
-        if s[0] < g[0] and s[0] < 6:
+        if s[0] < g[0] and s[0] < 13:
             self.move_right()
         elif s[0] > g[0] and s[0] > 0:
             self.move_left()
         else:
-            if s[1] < g[1] and s[1] < 6:
-                self.move_up()
-            elif s[1] > g[1] and s[1] > 0:
+            if s[1] < g[1] and s[1] < 13:
                 self.move_down()
+            elif s[1] > g[1] and s[1] > 0:
+                self.move_up()

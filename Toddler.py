@@ -1,8 +1,6 @@
 from Human import Human
 from abc import ABC, abstractmethod
 
-
-
 class Toddler(Human):
 
     def __init__(self, id,position, direction, pos_table):

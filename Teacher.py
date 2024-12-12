@@ -17,7 +17,9 @@ class Teacher(Human):
         for toddler in toddlers:
             if not toddler.get_table():
                 bad_toddlers.append(toddler)
-        return self.choice_toddler(bad_toddlers)
+        if bad_toddlers:
+            print("Following bad toddlers")
+            self.move_to(self.choice_toddler(bad_toddlers))
 
     def choice_toddler(self, toddlers):
         chosen_toddler = toddlers[0]
