@@ -38,10 +38,12 @@ def draw_player_points():
         draw_text_with_contour(points_text, font, (0, 0, 0), (255, 255, 255), 10 + font.size(points_text)[0] // 2, y_offset)
         y_offset += 30
 
-def draw_resources():
-    """Draw the resources on the grid."""
-    # Assuming resources are not used in this version
-    pass
+def draw_candy():
+    """Draw the candy on the grid."""
+    candy_pos = game_instance.get_candy()
+    pixel_pos = (candy_pos[0] * cell_size, candy_pos[1] * cell_size)
+    pygame.draw.rect(screen, (0, 255, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
+
 
 def draw_players():
     """Draw the toddlers and the teacher on the grid."""
@@ -58,7 +60,7 @@ def draw_players():
 def draw_end_game():
     """Draw the end game screen with players' points."""
     screen.fill((255, 255, 255))
-    draw_resources()
+    draw_candy()
     draw_player_points()
     draw_players()
 
@@ -76,17 +78,11 @@ def draw_end_game():
 last_time = time.time()
 
 while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_q:
-                pygame.quit()
-                sys.exit()
-
     while game_instance.get_running():
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_s:
                     game_instance.stop_game()
@@ -105,10 +101,10 @@ while True:
                 rect = pygame.Rect(x, y, cell_size, cell_size)
                 pygame.draw.rect(screen, (0, 0, 0), rect, 1)
 
-        draw_resources()
+        # draw_resources()
 #        draw_player_points()
         draw_players()
-
+        draw_candy()
         # Render the time text
         time_text = font.render(f"Time: {game_instance.get_time()}", True, (0, 0, 0))
         screen.blit(time_text, (10, 10))

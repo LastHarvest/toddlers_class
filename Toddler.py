@@ -7,15 +7,15 @@ class Toddler(Human):
 
     def __init__(self, id,position, direction, pos_table):
         super().__init__(id,position, direction, pos_table)
-        self.__nb_candy = 0
+        self._nb_candy = 0
 
     def get_nb_candy(self):
-        return self.__nb_candy
+        return self._nb_candy
 
     def collect_candy(self,candy):
-        if self.__position == candy :
+        if self._position == candy :
             self.set_table(True)
-            self.__nb_candy += 1
+            self._nb_candy += 1
 
     @abstractmethod
     def strategy(self, candy,teacher):

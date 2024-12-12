@@ -8,13 +8,13 @@ class CrazyToddler(Toddler):
         super().__init__(id, position, direction, pos_table)
 
     def strategy(self,candy, teacher):
-        if self.__position == self.__pos_table and self.__table == False:
+        if self._position == self._pos_table and self._table == False:
             self.set_table(True)
-        elif candy == self.__position:
+        elif candy == self._position:
             self.collect_candy(candy)
 
-        elif self.__position != self.__pos_table and self.__table == False :
-            self.move_to(self.__pos_table)
+        elif self._position != self._pos_table and self._table == False :
+            self.move_to(self._pos_table)
         else :
             self.to_candy(candy,teacher)
 

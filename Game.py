@@ -1,54 +1,47 @@
-import random
-from time import sleep
-
-from Toddler import Toddler
+# Game.py
 from Teacher import Teacher
-from CrazyToddler import *
-from AfraidToddler import *
-
+from CrazyToddler import CrazyToddler
+from AfraidToddler import AfraidToddler
 
 class Game:
     def __init__(self):
-        self.__running = True
-        self.__time = 0
-        self.__toddlers = [AfraidToddler( 1,(0, 0), (0, 0) , "right"), CrazyToddler(2,(1, 1),   (1, 1), "left")]
-        self.__teacher = Teacher(3,(1, 0), (2,3), "right")
-
-    #METHODS
+        self._running = True
+        self._time = 0
+        self._toddlers = [AfraidToddler(1, (0, 0), (0, 0), "right"), CrazyToddler(2, (1, 1), (1, 1), "left")]
+        self._teacher = Teacher(3, (1, 0), (2, 3), "right")
+        self._candy = (2, 2)
 
     def action(self):
-        toddlers = self.__toddlers
+        toddlers = self._toddlers
         for toddler in toddlers:
-            toddler.action()
+            toddler.strategy(self._candy, self._teacher)
 
     def get_running(self):
-        return self.__running
+        return self._running
 
-    #GETTER
     def get_time(self) -> int:
-        return self.__time
+        return self._time
 
     def get_toddlers(self) -> list:
-        return self.__toddlers
+        return self._toddlers
 
     def get_teacher(self) -> Teacher:
-        return self.__teacher
+        return self._teacher
 
+    def get_candy(self):
+        return self._candy
 
-
-    ##SETTERS
     def set_time(self, time: int):
-        self.__time = time
+        self._time = time
 
-    def set_toddlers(self, toddlers: list[Toddler]):
-        self.__toddlers = toddlers
+    def set_toddlers(self, toddlers: list):
+        self._toddlers = toddlers
 
     def set_teacher(self, teacher: Teacher):
-        self.__teacher = teacher
+        self._teacher = teacher
 
-    ##ADDERS
     def increment_time(self):
-        self.__time += 1
+        self._time += 1
 
     def stop_game(self):
-        self.__running = False
+        self._running = False
