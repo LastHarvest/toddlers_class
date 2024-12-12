@@ -5,8 +5,8 @@ from Toddler import Toddler
 
 class StupidToddler(Toddler):
 
-    def __init__(self, position, id,  Table, Pos_table, direction, hunger, Cooldown):
-        super().__init__(position, id, Table, direction)
+    def __init__(self, position, id,  Table, Pos_table, direction, nbCandy, hunger, Cooldown):
+        super().__init__(position, id, Table, direction, nbCandy)
         self.hunger = hunger
         self.Cooldown = Cooldown
 
@@ -32,13 +32,18 @@ class StupidToddler(Toddler):
         if self.position == candy :
             self.Cooldown = self.hunger
             self.update_Table(True)
+            self.update_NbCandy()
 
 
-    def Strategie(self, teacher):
+    def Strategie(self,candy, teacher):
         if self.Cooldown == 0 and self.get_Table()==True:
             self.update_Table(False)
         elif self.Cooldown == 0 and self.get_Table()==False:
-            self.move_player_to_candy()
+            if candy == self.pos():
+                self.collect_resource(self,candy)
+            else :
+                self.move_player_to_candy()
+            
         else :
             self.add_Cooldown()
             if self.get_position != self.get_Pos_table() :

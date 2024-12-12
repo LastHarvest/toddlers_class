@@ -1,16 +1,16 @@
 import math
-from Human import Human
 from abc import ABC, abstractmethod
 
 
-class Toddler(Human):
+class Toddler(ABC):
 
-    def __init__(self,position,id, table, pos_table, direction):
-        super().__init__(self, position)
+    def __init__(self,position,id, table, pos_table, direction,nbCandy):
+        self.position = position
         self.id = id
         self.table = True
         self.pos_table = pos_table
         self.direction = direction
+        self.nbCandy = nbCandy
 
     # Getters
 
@@ -30,6 +30,9 @@ class Toddler(Human):
     
     def get_Pos_table(self):
         return self.pos_table
+    
+    def get_nbCandy(self):
+        return self.nbCandy
 
 
     #Setters
@@ -45,6 +48,9 @@ class Toddler(Human):
     
     def update_Table(self, state):
         self.table = state
+
+    def update_NbCandy(Self):
+        nbCandy = nbCandy+1
 
 
     # Déplacements

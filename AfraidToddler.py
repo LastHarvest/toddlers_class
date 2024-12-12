@@ -5,19 +5,20 @@ from Toddler import Toddler
 
 class AfraidToddler(Toddler):
 
-    def __init__(self, position, id,  Table, Pos_table, direction):
-        super().__init__(position, id, Table, direction)
+    def __init__(self, position, id,  Table, Pos_table, direction,nbCandy):
+        super().__init__(position, id, Table, direction,nbCandy)
 
 
     def collect_resource(self,candy):
         if self.position == candy :
             self.update_Table(True)
+            self.update_NbCandy()
 
 
     def Strategie(self, candy, teacher):
         if candy == self.pos():
             self.collect_resource(self,candy)
-        elif self.get_position != self.get_Pos_table() :
+        elif self.get_position != self.get_Pos_table() and self.get_Table() == False :
             self.move_player_to_table()
         else :
             self.move_player_to_candy()

@@ -1,13 +1,11 @@
 import math
-from random import randrange
 from Toddler import Toddler
 
+# Cherche juste à aller voir la prof.
 
-
-class AfraidToddler(Toddler):
-
-    def __init__(self, position, id,  Table, Pos_table, direction, nbCandy):
-        super().__init__(position, id, Table, direction, nbCandy)
+class InLoveToddler(Toddler):
+    def __init__(self, position, id,  Table, Pos_table, direction,nbCandy):
+        super().__init__(position, id, Table, direction,nbCandy)
 
 
     def collect_resource(self,candy):
@@ -16,7 +14,7 @@ class AfraidToddler(Toddler):
             self.update_NbCandy()
 
 
-    def Strategie(self, teacher, candy):
+    def Strategie(self, candy, teacher):
         if candy == self.pos():
             self.collect_resource(self,candy)
         elif self.get_position != self.get_Pos_table() and self.get_Table() == False :
@@ -28,17 +26,14 @@ class AfraidToddler(Toddler):
 
     def move_player_to_candy(self, teacher, candy):
         s = self.get_pos()
-        r = randrange(1,5)
-        if r == 1 and s[0] < 6 :
+        t = teacher.get_pos()
+        c = candy
+        if s[0] < t[0] and s[0] < 6:
             self.move_left()
-        elif r==2 and s[0] > 0 :
+        elif s[0] > t[0] and s[0] > 0:
             self.move_right()
         else:
-            if r==3 and s[1] < 6:
+            if s[1] < t[1] and s[1] < 6:
                 self.move_down()
-            elif r==4 and s[1] > 0:
+            elif s[1] > t[1] and s[1] > 0:
                 self.move_up()
-
-
-
-    
