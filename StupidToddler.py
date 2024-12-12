@@ -5,53 +5,37 @@ from Toddler import Toddler
 
 class StupidToddler(Toddler):
 
-    def __init__(self, position, id,  table, direction, hunger, cooldown):
+    def __init__(self, position, id,  table, direction, hunger):
         super().__init__(id,position, direction, table)
         self.__hunger = hunger
-        self.__cooldown = cooldown
+        self.__cooldown = hunger
 
-
-    # Getters
-    def get_Hunger(self):
+    def get_hunger(self):
         return self.__hunger
     
-    def get_Cooldown(self):
+    def get_cooldown(self):
         return self.__cooldown
 
-    
-
-    #Setters
-    def add_Cooldown(self):
-        self.Cool__cooldown -= 1
-
-    def init_Cooldown(self):
-        self.__cooldown = self.__hunger
+    def add_cooldown(self):
+        self.__cooldown -= 1
 
 
-    def collect_resource(self,candy):
-        if self.__position == candy :
-            self.__hunger = self.__hunger
-            self.update_Table(True)
-
-
-    def strategie(self, teacher):
-        if self.__cooldown == 0 and self.get_table()==True:
-            self.update_Table(False)
-        elif self.Cooldown == 0 and self.get_Table()==False:
-            if candy == self.pos():
-                self.collect_resource(self,candy)
+    def strategy(self, candy, teacher):
+        if self.__cooldown == 0 and self.__table==True:
+            self.set_table(False)
+        elif self.__cooldown == 0 and self.__table()==False:
+            if candy == self.__position:
+                self.collect_candy(candy)
+                self.__hunger = 0
             else :
-                self.move_player_to_candy()
-
+                self.to_candy(teacher, candy)
         else :
-            self.add_Cooldown()
-            if self.get_position != self.get_Pos_table() :
-                self.move_player_to_table()
-            
+            self.add_cooldown()
+            if self.__position != self.__pos_table :
+                self.move_to(self.__pos_table)
 
-
-    def move_player_to_candy(self,teacher, candy):
-        s = self.get_pos()
+    def to_candy(self,teacher, candy):
+        s = self.__position
         b = candy
         if s[0] < b[0] and s[0] < 6:
             self.move_right()

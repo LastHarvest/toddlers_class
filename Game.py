@@ -3,13 +3,16 @@ from time import sleep
 
 from Toddler import Toddler
 from Teacher import Teacher
+from CrazyToddler import *
+from AfraidToddler import *
+
 
 class Game:
     def __init__(self):
         self.__running = True
         self.__time = 0
-        self.__toddlers = [Toddler( 1,(0, 0), (0, 0) , "right"), Toddler(2,(1, 1),   (1, 1), "left")]
-        self.__teacher = Teacher(3,(0, 0), "right")
+        self.__toddlers = [AfraidToddler( 1,(0, 0), (0, 0) , "right"), CrazyToddler(2,(1, 1),   (1, 1), "left")]
+        self.__teacher = Teacher(3,(1, 0), (2,3), "right")
 
     #METHODS
 

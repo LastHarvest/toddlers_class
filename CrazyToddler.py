@@ -2,44 +2,24 @@ import math
 from random import randrange
 from Toddler import Toddler
 
+class CrazyToddler(Toddler):
 
+    def __init__(self, id, position, pos_table, direction):
+        super().__init__(id, position, direction, pos_table)
 
-class AfraidToddler(Toddler):
-    def __init__(self, position, id, table, direction, hunger, cooldown):
-        super().__init__(id, position, direction, table)
+    def strategy(self,candy, teacher):
+        if self.__position == self.__pos_table and self.__table == False:
+            self.set_table(True)
+        elif candy == self.__position:
+            self.collect_candy(candy)
 
-
-    def collect_resource(self,candy):
-        if self.position == candy :
-            self.update_Table(True)
-            self.update_NbCandy()
-
-
-    def Strategie(self, teacher, candy):
-        if self.get_position == self.get_Pos_table() and self.get_Table() == False:
-            self.update_Table(True)
-        elif candy == self.pos():
-        if candy == self.pos():
-            self.collect_resource(self,candy)
-        elif self.get_position != self.get_Pos_table() and self.get_Table() == False :
-            self.move_player_to_table()
+        elif self.__position != self.__pos_table and self.__table == False :
+            self.move_to(self.__pos_table)
         else :
-            self.move_player_to_candy()
-            
+            self.to_candy(candy,teacher)
 
-
-    def move_player_to_candy(self, teacher, candy):
-        s = self.get_pos()
-        r = randrange(1,5)
-        if r == 1 and s[0] < 6 :
-            self.move_left()
-        elif r==2 and s[0] > 0 :
-            self.move_right()
-        else:
-            if r==3 and s[1] < 6:
-                self.move_down()
-            elif r==4 and s[1] > 0:
-                self.move_up()
+    def to_candy(self, teacher, candy):
+       pass
 
 
 
