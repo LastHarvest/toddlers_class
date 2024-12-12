@@ -1,17 +1,25 @@
 import math
+from random import randrange
 from Toddler import Toddler
 
 
 
-class AfraidToddler(Toddler):
+class LyingToddler(Toddler):
 
-    def __init__(self, position, id,  Table, Pos_table, direction):
-        super().__init__(position, id, Table, direction)
+    def __init__(self, position, id,  Table, Pos_table, direction,nbCandy,Lying):
+        super().__init__(position, id, Table, direction,nbCandy)
+        self.Lying = False
 
+    def get_Lying(self):
+        return self.Lying
+    
+    def update_Lying(self,Bool):
+        self.Lying = Bool
 
     def collect_resource(self,candy):
         if self.position == candy :
             self.update_Table(True)
+            self.update_NbCandy()
 
 
     def Strategie(self, candy, teacher):
@@ -20,13 +28,21 @@ class AfraidToddler(Toddler):
                 self.update_Table(True)
         elif candy == self.pos():
             self.collect_resource(self,candy)
-        elif self.get_position != self.get_Pos_table() and self.get_Table() == False :
+        elif self.get_position != self.get_Pos_table() and self.get_Table() == False and self.get_Lying() == False:
             self.move_player_to_table()
         else :
-            self.move_player_to_candy()
+            r = randrange(1,4)
+            if r == 1 :
+                self.update_Lying(True)
+                self.update_Table(False)
+                self.move_player_to_candy()
+            else :
+                self.update_Lying(False)
+                self.update_Table(True)
+                self.move_player_to_candy()
+
+
             
-
-
     def move_player_to_candy(self, teacher, candy):
         s = self.get_pos()
         t = teacher.get_pos()

@@ -37,11 +37,15 @@ class StupidToddler(Toddler):
     def strategie(self, teacher):
         if self.__cooldown == 0 and self.get_table()==True:
             self.update_Table(False)
-        elif self.__cooldown == 0 and self.get_table()==False:
-            self.move_player_to_candy()
+        elif self.Cooldown == 0 and self.get_Table()==False:
+            if candy == self.pos():
+                self.collect_resource(self,candy)
+            else :
+                self.move_player_to_candy()
+
         else :
             self.add_Cooldown()
-            if self.get_position != self.get_table() :
+            if self.get_position != self.get_Pos_table() :
                 self.move_player_to_table()
             
 
