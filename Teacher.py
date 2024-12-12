@@ -1,6 +1,5 @@
 from Human import Human
-from Toddler import Toddler
-from Game import Game
+
 
 
 class Teacher(Human):
