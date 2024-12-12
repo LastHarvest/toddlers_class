@@ -9,9 +9,8 @@ class Teacher(Human):
         self.direction = direction
 
     def distance(self, other) -> float:
-        #Return the Manhattan distance between the current agent and another agent.
+        # Return the Manhattan distance between the current agent and another agent.
         return abs(self.position[0] - other.position[0]) + abs(self.position[1] - other.position[1])
-
 
     def watch_children(self):
         toddlers = Game.get_toddlers()
