@@ -1,12 +1,11 @@
 import math
-from Human import Human
 from abc import ABC, abstractmethod
 
 
-class Toddler(Human):
+class Toddler():
 
     def __init__(self,position,id, Table, Pos_table, direction):
-        super().__init__(self, position)
+        self.position = position
         self.id = id
         self.Table = True
         self.Pos_table = Pos_table

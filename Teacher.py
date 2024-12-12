@@ -1,11 +1,10 @@
-from Human import Human
-from Toddler import Toddler
+
 from Game import Game
 
 
-class Teacher(Human):
+class Teacher:
     def __init__(self, position, direction):
-        super().__init__(position)
+        self.position = position
         self.direction = direction
 
 
@@ -41,3 +40,27 @@ class Teacher(Human):
                 self.move_down()
 
 
+    def distance(self, other) -> float:
+        #Return the Manhattan distance between the current agent and another agent.
+        return abs(self.position[0] - other.position[0]) + abs(self.position[1] - other.position[1])
+
+
+    def get_position(self) -> tuple:
+        return self.position
+
+    def set_position(self, position: tuple):
+        self.position = position
+
+    def move_up(self):
+        self.position = (self.position[0], self.position[1] + 1)
+
+    def move_down(self):
+        self.position = (self.position[0], self.position[1] - 1)
+
+    def move_left(self):
+        self.position = (self.position[0] - 1, self.position[1])
+        self.direction="left"
+
+    def move_right(self):
+        self.position = (self.position[0] + 1, self.position[1])
+        self.direction="right"
