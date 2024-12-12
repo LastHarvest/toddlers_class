@@ -17,7 +17,9 @@ class AfraidToddler(Toddler):
 
 
     def Strategie(self, teacher, candy):
-        if candy == self.pos():
+        if self.get_position == self.get_Pos_table() and self.get_Table() == False:
+            self.update_Table(True)
+        elif candy == self.pos():
             self.collect_resource(self,candy)
         elif self.get_position != self.get_Pos_table() and self.get_Table() == False :
             self.move_player_to_table()

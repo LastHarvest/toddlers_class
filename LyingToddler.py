@@ -23,7 +23,10 @@ class LyingToddler(Toddler):
 
 
     def Strategie(self, candy, teacher):
-        if candy == self.pos():
+        if self.get_position == self.get_Pos_table() and self.get_Table() == False:
+            if self.get_distance_resource(teacher.get_pos())>3:
+                self.update_Table(True)
+        elif candy == self.pos():
             self.collect_resource(self,candy)
         elif self.get_position != self.get_Pos_table() and self.get_Table() == False and self.get_Lying() == False:
             self.move_player_to_table()
@@ -40,9 +43,6 @@ class LyingToddler(Toddler):
 
 
             
-            
-
-
     def move_player_to_candy(self, teacher, candy):
         s = self.get_pos()
         t = teacher.get_pos()
