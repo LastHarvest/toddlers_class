@@ -19,7 +19,7 @@ class Game:
     def action(self):
         toddlers = self.__toddlers
         for toddler in toddlers:
-            toddler.action()
+            toddler.strategy()
 
     def get_running(self):
         return self.__running

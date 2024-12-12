@@ -13,15 +13,19 @@ class AfraidToddler(Toddler):
 
 
     def strategy(self, candy, teacher):
-        if self.__position == self.__pos_table and self.__table == False:
-            if self.distance_to(teacher.get_pos())>3:
-                self.set_table(True)
-        elif candy == self.__position:
-            self.collect_candy(candy)
-        elif self.__position != self.__pos_table and self.__table == False :
-            self.move_to(self.__pos_table)
+        #Il essaye d'aller vers les bonbons, si la prof est trop près il va vers la table
+
+        if self.__position == self.__pos_table and self.__table == False: #condition à déplacer dans game
+            self.set_table(True)
+
+        if not self.__table:
+            if self.distance_to(teacher.get_pos())<3:
+                self.move_to(self.__pos_table)
+            elif candy == self.__position:
+                self.collect_candy(candy)
         else :
-            self.to_candy(teacher, candy)
+            if not self.distance_to(teacher.get_pos())<3:
+                self.to_candy(teacher, candy)
             
 
 

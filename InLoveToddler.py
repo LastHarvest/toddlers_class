@@ -10,12 +10,11 @@ class InLoveToddler(Toddler):
     def strategy(self, candy, teacher):
         if self.get_position == self.__pos_table and self.__table == False:
             self.set_table(True)
+
         elif candy == self.__position:
             self.collect_candy(self,candy)
-        elif self.get_position != self.__pos_table and self.__table == False :
-            self.move_to(self.__pos_table)
-        else :
-            self.to_candy(teacher, candy)
+        else:
+            self.move_to(teacher)
             
 
 
