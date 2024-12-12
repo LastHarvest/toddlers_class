@@ -8,10 +8,10 @@ class InLoveToddler(Toddler):
         super().__init__(id, position, direction, pos_table)
 
     def strategy(self, candy, teacher):
-        if self.get_position == self.__pos_table and self.__table == False:
+        if self.get_position == self._pos_table and self._table == False:
             self.set_table(True)
 
-        elif candy == self.__position:
+        elif candy == self._position:
             self.collect_candy(self,candy)
         else:
             self.move_to(teacher)

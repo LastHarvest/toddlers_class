@@ -8,23 +8,23 @@ class LyingToddler(Toddler):
 
     def __init__(self, id, position, pos_table, direction):
         super().__init__(id, position, direction, pos_table)
-        self.__lying = False
+        self._lying = False
 
 
     def get_lying(self):
-        return self.__lying
+        return self._lying
     
     def set_lying(self,tf : bool):
-        self.__lying = tf
+        self._lying = tf
 
     def strategy(self, candy, teacher):
-        if self.get_position == self.__pos_table and self.__table == False:
+        if self.get_position == self._pos_table and self._table == False:
             if self.distance(teacher.get_pos())>3:
                 self.set_table(True)
-        elif candy == self.__position:
+        elif candy == self._position:
             self.collect_candy(self,candy)
-        elif self.get_position != self.__pos_table and self.__table == False and self.__lying == False:
-            self.move_to(self.__pos_table)
+        elif self.get_position != self._pos_table and self._table == False and self._lying == False:
+            self.move_to(self._pos_table)
         else :
             r = randrange(1,4)
             if r == 1 :
@@ -39,7 +39,7 @@ class LyingToddler(Toddler):
 
             
     def to_candy(self, teacher, candy):
-        s = self.__position
+        s = self._position
         t = teacher.get_pos()
         c = candy
         if self.distance(t) > 3 :
