@@ -8,8 +8,9 @@ class Game:
     def __init__(self):
         self.__running = True
         self.__time = 0
-        self.__toddlers = [Toddler((0, 0), 1, True, (0, 0), "right"), Toddler((1, 1), 2, True, (1, 1), "left")]
-        self.__teacher = Teacher((0, 0), "right")
+        self.__toddlers = [Toddler( 1,(0, 0), (0, 0) , "right"), Toddler(2,(1, 1),   (1, 1), "left")]
+        self.__teacher = Teacher(3,(0, 0), "right")
+
     #METHODS
 
     def action(self):

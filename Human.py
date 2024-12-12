@@ -2,13 +2,17 @@ from abc import ABC, abstractmethod
 
 
 class Human(ABC):
-    def __init__(self, position: tuple):
+    def __init__(self,id: int, position: tuple, direction: str):
+        self.__id = id
         self.__position = position
+        self.__direction = direction
 
     def distance(self, other) -> float:
         #Return the Manhattan distance between the current agent and another agent.
-        return abs(self.position[0] - other.position[0]) + abs(self.position[1] - other.position[1])
+        return abs(self.__position[0] - other.position[0]) + abs(self.__position[1] - other.position[1])
 
+    def get_id(self) -> int:
+        return self.__id
 
     def get_position(self) -> tuple:
         return self.__position
@@ -17,15 +21,15 @@ class Human(ABC):
         self.__position = position
 
     def move_up(self):
-        self.position = (self.position[0], self.position[1] + 1)
+        self.__position = (self.__position[0], self.__position[1] + 1)
 
     def move_down(self):
-        self.position = (self.position[0], self.position[1] - 1)
+        self.__position = (self.__position[0], self.__position[1] - 1)
 
     def move_left(self):
-        self.position = (self.position[0] - 1, self.position[1])
-        self.direction="left"
+        self.__position = (self.__position[0] - 1, self.__position[1])
+        self.__direction="left"
 
     def move_right(self):
-        self.position = (self.position[0] + 1, self.position[1])
-        self.direction="right"
+        self.__position = (self.__position[0] + 1, self.__position[1])
+        self.__direction="right"

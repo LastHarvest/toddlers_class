@@ -46,12 +46,12 @@ def draw_resources():
 def draw_players():
     """Draw the toddlers and the teacher on the grid."""
     for toddler in game_instance.get_toddlers():
-        toddler_pos = toddler.get_pos()
+        toddler_pos = toddler.get_position()
         pixel_pos = (toddler_pos[0] * cell_size + cell_size // 2, toddler_pos[1] * cell_size + cell_size // 2)
         pygame.draw.circle(screen, (0, 0, 255), pixel_pos, cell_size // 3)
 
     teacher = game_instance.get_teacher()
-    teacher_pos = teacher.get_pos()
+    teacher_pos = teacher.get_position()
     pixel_pos = (teacher_pos[0] * cell_size, teacher_pos[1] * cell_size)
     pygame.draw.rect(screen, (255, 0, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
 

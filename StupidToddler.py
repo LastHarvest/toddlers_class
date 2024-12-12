@@ -5,49 +5,50 @@ from Toddler import Toddler
 
 class StupidToddler(Toddler):
 
-    def __init__(self, position, id,  Table, Pos_table, direction, hunger, Cooldown):
-        super().__init__(position, id, Table, direction)
-        self.hunger = hunger
-        self.Cooldown = Cooldown
+    def __init__(self, position, id,  table, direction, hunger, cooldown):
+        super().__init__(id,position, direction, table)
+        self.__hunger = hunger
+        self.__cooldown = cooldown
 
 
     # Getters
     def get_Hunger(self):
-        return self.hunger
+        return self.__hunger
     
     def get_Cooldown(self):
-        return self.Cooldown
+        return self.__cooldown
 
     
 
     #Setters
     def add_Cooldown(self):
-        self.Cooldown -= 1
+        self.Cool__cooldown -= 1
 
     def init_Cooldown(self):
-        self.Cooldown = self.hunger
+        self.__cooldown = self.__hunger
 
 
-    def collect_resource(self,bonbon):
-        if self.position == bonbon :
-            self.Cooldown = self.Faim
+    def collect_resource(self,candy):
+        if self.__position == candy :
+            self.__hunger = self.__hunger
+            self.update_Table(True)
 
 
-    def Strategie(self, teacher):
-        if self.Cooldown == 0 and self.get_Table()==True:
+    def strategie(self, teacher):
+        if self.__cooldown == 0 and self.get_table()==True:
             self.update_Table(False)
-        elif self.Cooldown == 0 and self.get_Table()==False:
-            self.move_player_to_bonbon(bonbon)
+        elif self.__cooldown == 0 and self.get_table()==False:
+            self.move_player_to_candy()
         else :
             self.add_Cooldown()
-            if self.get_position != self.get_Pos_table() :
+            if self.get_position != self.get_table() :
                 self.move_player_to_table()
-
+            
 
 
     def move_player_to_candy(self,teacher, candy):
         s = self.get_pos()
-        b = bonbon
+        b = candy
         if s[0] < b[0] and s[0] < 6:
             self.move_right()
         elif s[0] > b[0] and s[0] > 0:

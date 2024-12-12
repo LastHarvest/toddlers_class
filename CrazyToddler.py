@@ -5,9 +5,8 @@ from Toddler import Toddler
 
 
 class AfraidToddler(Toddler):
-
-    def __init__(self, position, id,  Table, Pos_table, direction):
-        super().__init__(position, id, Table, direction)
+    def __init__(self, position, id, table, direction, hunger, cooldown):
+        super().__init__(id, position, direction, table)
 
 
     def collect_resource(self,candy):

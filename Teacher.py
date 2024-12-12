@@ -4,8 +4,8 @@ from Game import Game
 
 
 class Teacher(Human):
-    def __init__(self, position, direction):
-        super().__init__(position)
+    def __init__(self, id,position, direction):
+        super().__init__(id,position, direction)
         self.direction = direction
 
     def distance(self, other) -> float:
