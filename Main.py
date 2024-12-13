@@ -14,6 +14,54 @@ cell_size = window_size // grid_size
 screen = pygame.display.set_mode((window_size, window_size))
 pygame.display.set_caption('Game Time Display')
 
+tod1 = pygame.image.load('Pictures/characters/tod1.png')
+tod1w1r = pygame.image.load('Pictures/characters/tod1w1r.png')
+tod1w1l = pygame.image.load('Pictures/characters/tod1w1l.png')
+tod1w2r = pygame.image.load('Pictures/characters/tod1w2r.png')
+tod1w2l = pygame.image.load('Pictures/characters/tod1w2l.png')
+
+tod2 = pygame.image.load('Pictures/characters/tod2.png')
+tod2w1r = pygame.image.load('Pictures/characters/tod2w1r.png')
+tod2w1l = pygame.image.load('Pictures/characters/tod2w1l.png')
+tod2w2r = pygame.image.load('Pictures/characters/tod2w2r.png')
+tod2w2l = pygame.image.load('Pictures/characters/tod2w2l.png')
+
+tod3 = pygame.image.load('Pictures/characters/tod3.png')
+tod3w1r = pygame.image.load('Pictures/characters/tod3w1r.png')
+tod3w1l = pygame.image.load('Pictures/characters/tod3w1l.png')
+tod3w2r = pygame.image.load('Pictures/characters/tod3w2r.png')
+tod3w2l = pygame.image.load('Pictures/characters/tod3w2l.png')
+
+tod4 = pygame.image.load('Pictures/characters/tod4.png')
+tod4w1r = pygame.image.load('Pictures/characters/tod4w1r.png')
+tod4w1l = pygame.image.load('Pictures/characters/tod4w1l.png')
+tod4w2r = pygame.image.load('Pictures/characters/tod4w2r.png')
+tod4w2l = pygame.image.load('Pictures/characters/tod4w2l.png')
+
+tod5 = pygame.image.load('Pictures/characters/tod5.png')
+tod5w1r = pygame.image.load('Pictures/characters/tod5w1r.png')
+tod5w1l = pygame.image.load('Pictures/characters/tod5w1l.png')
+tod5w2r = pygame.image.load('Pictures/characters/tod5w2r.png')
+tod5w2l = pygame.image.load('Pictures/characters/tod5w2l.png')
+
+tod6 = pygame.image.load('Pictures/characters/tod6.png')
+tod6w1r = pygame.image.load('Pictures/characters/tod6w1r.png')
+tod6w1l = pygame.image.load('Pictures/characters/tod6w1l.png')
+tod6w2r = pygame.image.load('Pictures/characters/tod6w2r.png')
+tod6w2l = pygame.image.load('Pictures/characters/tod6w2l.png')
+
+toddlersPic=[[tod1,tod1w1r,tod1w1l,tod1w2r,tod1w2l],[tod2,tod2w1r,tod2w1l,tod2w2r,tod2w2l],[tod3,tod3w1r,tod3w1l,tod3w2r,tod3w2l],[tod4,tod4w1r,tod4w1l,tod4w2r,tod4w2l],[tod5,tod5w1r,tod5w1l,tod5w2r,tod5w2l],[tod6,tod6w1r,tod6w1l,tod6w2r,tod6w2l]]
+for pic in toddlersPic:
+    for i in range(5):
+        pic[i] = pygame.transform.scale(pic[i], (cell_size*1.1, cell_size*1.1))
+
+teacher = pygame.image.load('Pictures/characters/teach.png')
+candy = pygame.image.load('Pictures/bonbons.png')
+table = pygame.image.load('Pictures/table.png')
+teach = pygame.transform.scale(teacher, (cell_size*1.2, cell_size*1.2))
+candy = pygame.transform.scale(candy, (cell_size*0.8, cell_size*0.8))
+table = pygame.transform.scale(table, (cell_size*1.2, cell_size*1.2))
+
 game_instance = Game(grid_size)
 font = pygame.font.Font(None, 27)
 
@@ -43,29 +91,40 @@ def draw_candy():
     """Draw the candy on the grid."""
     candy_pos = game_instance.get_candy()
     pixel_pos = (candy_pos[0] * cell_size, candy_pos[1] * cell_size)
-    pygame.draw.rect(screen, (0, 255, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
+    #pygame.draw.rect(screen, (0, 255, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
+    screen.blit(candy, (pixel_pos[0], pixel_pos[1]))
 
 def draw_players():
     """Draw the toddlers and the teacher on the grid."""
     initial_positions = game_instance.get_initial_positions()
     for pos in initial_positions:
         pixel_pos = (pos[0] * cell_size, pos[1] * cell_size)
-        pygame.draw.rect(screen, (255, 255, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
-
+        #pygame.draw.rect(screen, (255, 255, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
+        screen.blit(table, (pixel_pos[0], pixel_pos[1]))
     teacher_initial_pos = game_instance.get_teacher().get_pos_table()
     pixel_pos = (teacher_initial_pos[0] * cell_size, teacher_initial_pos[1] * cell_size)
-    pygame.draw.rect(screen, (255, 255, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
+    #pygame.draw.rect(screen, (255, 255, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
+    screen.blit(table, (pixel_pos[0], pixel_pos[1]))
 
     for toddler in game_instance.get_toddlers():
         toddler_pos = toddler.get_position()
         pixel_pos = (toddler_pos[0] * cell_size, toddler_pos[1] * cell_size)
         pygame.draw.circle(screen, (0, 0, 255), (pixel_pos[0] + cell_size // 2, pixel_pos[1] + cell_size // 2), cell_size // 3)
-
+        ''''if toddler.at_table():
+            image = toddlersPic[toddler.get_id()-1][0]
+        else:
+            if toddler.get_position()[0] % 2 == 0:
+                image = toddlersPic[toddler.get_id()-1][1] if toddler.get_direction() == "right" else toddlersPic[toddler.get_id()-1][3]
+            else:
+                image =  toddlersPic[toddler.get_id()-1][2]if toddler.get_direction() == "right" else toddlersPic[toddler.get_id()-1][4]
+        screen.blit(image, (pixel_pos[0], pixel_pos[1]))
     teacher = game_instance.get_teacher()
     teacher_pos = teacher.get_position()
     pixel_pos = (teacher_pos[0] * cell_size, teacher_pos[1] * cell_size)
-    pygame.draw.circle(screen, (255, 192, 203), (pixel_pos[0] + cell_size // 2, pixel_pos[1] + cell_size // 2), cell_size // 3)
-
+    #pygame.draw.circle(screen, (255, 192, 203), (pixel_pos[0] + cell_size // 2, pixel_pos[1] + cell_size // 2), cell_size // 3)
+    screen.blit(teach, (pixel_pos[0], pixel_pos[1]))'''
+def draw_players_pictures():
+    pass
 
 def draw_end_game():
     """Draw the end game screen with players' points."""
