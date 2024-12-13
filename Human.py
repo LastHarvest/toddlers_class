@@ -2,6 +2,10 @@ from abc import ABC, abstractmethod
 import math
 import heapq
 
+
+from abc import ABC, abstractmethod
+import math
+import heapq
 class Human(ABC):
     def __init__(self,id: int, position: tuple, direction: str, pos_table: tuple):
         self._id = id
@@ -19,7 +23,7 @@ class Human(ABC):
         return math.sqrt((other[0] - position[0]) ** 2 + (other[1] - position[1]) ** 2)
 
     def at_table(self):
-        self._table = (self._position == self._pos_table)
+        return self._position == self._pos_table
 
     def get_id(self) -> int:
         return self._id
@@ -53,21 +57,25 @@ class Human(ABC):
 
 
     def move_down(self):
-        print("Teacher")
-        self._position = (self._position[0], self._position[1] + 1)
+        tmp = (self._position[0], self._position[1] + 1)
+        self._position = tmp
 
     def move_up(self):
-        self._position = (self._position[0], self._position[1] - 1)
+        tmp = (self._position[0], self._position[1] - 1)
+        self._position = tmp
+
 
     def move_left(self):
-        self._position = (self._position[0] - 1, self._position[1])
-        self._direction= "left"
+        tmp = (self._position[0] - 1, self._position[1])
+        self._position = tmp
+        self._direction = "left"
 
     def move_right(self):
-        self._position = (self._position[0] + 1, self._position[1])
-        self._direction= "right"
+        tmp = (self._position[0] + 1, self._position[1])
+        self._position = tmp
+        self._direction = "right"
 
-    
+
     def move_to2(self, goal, tables):
         p = self._position
         s = 0
