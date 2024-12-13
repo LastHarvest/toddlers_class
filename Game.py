@@ -1,3 +1,4 @@
+
 import random
 from time import sleep
 
@@ -26,12 +27,12 @@ class Game:
         right_positions = [(grid_center_x + 2, grid_center_y - 3 + i * 2) for i in range(4)]
         self._initial_positions = left_positions + right_positions
         for i, pos in enumerate(self._initial_positions):
-            print(i)
             if i < 4:
                 self._toddlers.append(LyingToddler(i + 1, pos, pos, "right"))
             else:
                 self._toddlers.append(LyingToddler(i + 1, pos, pos, "left"))
         print(self._toddlers)
+
     def get_initial_positions(self):
         return self._initial_positions
 
