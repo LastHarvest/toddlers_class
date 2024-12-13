@@ -1,66 +1,47 @@
+# Teacher.py
 
-from Game import Game
-
-
-class Teacher:
-    def __init__(self, position, direction):
-        self.position = position
-        self.direction = direction
+from Human import *
 
 
-    def watch_children(self):
-        toddlers = Game.get_toddlers()
+class Teacher(Human):
+
+    def __init__(self, id, position, pos_table, direction):
+        super().__init__(id, position, direction, pos_table)
+
+    def get_position(self):
+        return self._position
+
+    def distance(self, other) -> float:
+        o = other.get_position()
+        return abs(self._position[0] - o[0]) + abs(self._position[1] - o[1])
+
+    def watch_children(self, toddlers, tables, candy):
         bad_toddlers = []
-        for toddler in toddlers:
-            if not toddler.get_Table():
-                bad_toddlers.append(toddler)
-        return self.choice_toddler(bad_toddlers)
+        for t in toddlers:
+            if not t.get_table():
+                bad_toddlers.append(t)
+                if self._position == t.get_position():
+                    print(f"Toddler{t.get_position()} Teacher {self.get_position()}")
+                    t.get_position = t.get_pos_table()
+                    self.move_to(t.get_position, tables)
+                    return
+        if bad_toddlers:
+            print("Following bad toddlers")
+            self.move_to(self.choice_toddler_distance_from_candy(bad_toddlers,candy), tables)
 
-    def choice_toddler(self, toddlers):
-        #TODO : Impémenter d'autres stratégies ?
-        #Strategie que sur la distance Manhattan
+    def choice_toddler_distance_from_teacher(self, toddlers):
         chosen_toddler = toddlers[0]
         for t in toddlers:
             if self.distance(t) < self.distance(chosen_toddler):
                 chosen_toddler = t
-        return chosen_toddler
+        return chosen_toddler.get_position()
 
-    def move_player_to_toddler(self, toddler):
-        #TODO: Rajouter les conditions sur les tables
-        s = self.get_position()
-        t = toddler.get_position()
-        if s[0] < t[0] and s[0] < 6:
-            self.move_right()
-        elif s[0] > t[0] and s[0] > 0:
-            self.move_left()
-        else:
-            if s[1] < t[1] and s[1] < 6:
-                self.move_up()
-            elif s[1] > t[1] and s[1] > 0:
-                self.move_down()
+    def choice_toddler_distance_from_candy(self, toddlers, candy):
+        chosen_toddler = toddlers[0]
+        for t in toddlers:
+            if t.distance_to(candy) < chosen_toddler.distance_to(candy):
+                chosen_toddler = t
+        return chosen_toddler.get_position()
 
-
-    def distance(self, other) -> float:
-        #Return the Manhattan distance between the current agent and another agent.
-        return abs(self.position[0] - other.position[0]) + abs(self.position[1] - other.position[1])
-
-
-    def get_position(self) -> tuple:
-        return self.position
-
-    def set_position(self, position: tuple):
-        self.position = position
-
-    def move_up(self):
-        self.position = (self.position[0], self.position[1] + 1)
-
-    def move_down(self):
-        self.position = (self.position[0], self.position[1] - 1)
-
-    def move_left(self):
-        self.position = (self.position[0] - 1, self.position[1])
-        self.direction="left"
-
-    def move_right(self):
-        self.position = (self.position[0] + 1, self.position[1])
-        self.direction="right"
+    def caught(self, t):
+        return t == self._position
