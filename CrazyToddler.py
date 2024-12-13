@@ -8,23 +8,23 @@ class CrazyToddler(Toddler):
         super().__init__(id, position,pos_table, direction,type)
 
     def strategy(self,candy, teacher, tables):
-        # if self._position == self._pos_table and self._table == False:
-        #     self.set_table(True)
-        # elif candy == self._position:
-        #     self.collect_candy(candy)
-        #
-        # elif not self._table:
-        #     #On lance un piéce, si pile on va vers les bonbons, sinon on va vers la table
-        #     if random.choice([True,False]):
-        #         self.move_to(self._pos_table)
-        #     else :
-        #         self.to_candy(candy,teacher)
-        if self._position == teacher.get_position():
-            self._position = self._pos_table
-        elif self.distance_to(teacher.get_position()) < 3:
-            self.move_to(self._pos_table, tables)
-        else:
-            self.move_to(candy, tables)
+        def strategy(self, candy, teacher, tables):
+            if self._has_candy:
+                if self._table:
+                    self._table = False
+                else:
+                    self.move_to(self._pos_table, tables)
+            else:
+                if self._position == candy and not self._has_candy:
+                    self._has_candy = True
+                    self.move_to(self._pos_table, tables)
+
+                if self.distance_to(teacher.get_position()) < 2:
+                    self.move_to(self._pos_table, tables)
+                elif not self._has_candy:
+                    choice = randrange(2)
+                    if choice == 0: self.move_to(teacher.get_position(), tables)
+                    else: self.move_to(candy, tables)
 
     def to_candy(self, teacher, candy, tables):
         pass

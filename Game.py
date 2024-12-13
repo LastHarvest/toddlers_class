@@ -9,6 +9,7 @@ from InLoveToddler import *
 from LyingToddler import *
 from RunningToddler import *
 from StupidToddler import *
+from HungryToddler import *
 
 
 class Game:
@@ -35,10 +36,10 @@ class Game:
         tabToddlers =[
             AfraidToddler(1,(1,1),(1,1), "right", "Afraid"),
             CrazyToddler(1, (1,1),(1,1), "left", "Crazy"),
-            InLoveToddler(1,(1,1),(1,1), "right", "InLove"),
+            StupidToddler(1,(1,1),(1,1), "right", "InLove"),
             LyingToddler(1, (1,1),(1,1), "left", "Lying"),
             RunningToddler(1,(1,1),(1,1), "right", "Running"),
-            StupidToddler(1, (1,1),(1,1), "left","Stupid",1)
+            HungryToddler(1, (1,1),(1,1), "left","Stupid",1)
         ]
         listTableNotAuthorized=[]
 

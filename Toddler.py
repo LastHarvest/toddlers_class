@@ -7,6 +7,7 @@ class Toddler(Human):
         super().__init__(id,position, direction, pos_table)
         self._type = type
         self._nb_candy = 0
+        self._has_candy = False
 
     def get_type(self):
         return self._type

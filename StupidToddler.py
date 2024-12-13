@@ -5,57 +5,22 @@ from Toddler import Toddler
 
 class StupidToddler(Toddler):
 
-    def __init__(self, id, position,  table, direction, type, hunger):
+    def __init__(self, id, position,  table, direction, type):
         super().__init__(id,position,table, direction,type)
-        self._hunger = hunger
-        self._cooldown = hunger
 
-    def set_hunger(self,hung):
-        self._hunger = hung
-        
-    def get_hunger(self):
-        return self._hunger
-    
-    def get_cooldown(self):
-        return self._cooldown
-
-    def add_cooldown(self):
-        self._cooldown -= 1
-
-
-    def strategy(self, candy, teacher,tables):
-        # Si son temps d'attente est écoulé et qu'il est à sa place il se lève pour aller chercher un bonbon
-        if self._cooldown == 0 and self._table==True:
-            self.set_table(False)
-        # Si il n'est pas à sa place et que son temps d'attente est écoulé il va chercher un bonbon 
-        # (il ne va pas forcément attendre d'être revenu à sa place pour repartir)
-        elif self._cooldown == 0 and self._table()==False:
-            # Si il est sur le bonbon il le ramasse
-            if candy == self._position:
-                self.collect_candy(candy)
-                self._cooldown = self._hunger
-            # Sinon il va le chercher
-            else :
-                self.to_candy(teacher, candy)
-        # Sinon il enlève un à son temps d'attente
-        else :
-            self.add_cooldown()
-            # et retourn à sa place si il n'y est pas déjà
-            if self._position != self._pos_table :
-                self.move_to(self._pos_table)
-
-    def to_candy(self,teacher, candy):
-        s = self._position
-        b = candy
-        if s[0] < b[0] and s[0] < 6:
-            self.move_right()
-        elif s[0] > b[0] and s[0] > 0:
-            self.move_left()
-        else:
-            if s[1] < b[1] and s[1] < 6:
-                self.move_up()
-            elif s[1] > b[1] and s[1] > 0:
-                self.move_down()
+    def strategy(self, candy, teacher, tables):
+        if self._has_candy and not self._table:
+            print("\n HAS CANDY GOING BACK\n")
+            self.move_to(self._pos_table, tables)
+        elif self._has_candy and self._table:
+            print("\n HAS CANDY GOING AGAIN\n")
+            self._has_candy = False
+        elif self._position == teacher.get_position():
+            print("\n CAUGHT\n")
+            self._position = self._pos_table
+        elif not self._has_candy:
+            self.move_to(candy, tables)
 
 
-    
+    def to_candy(self, teacher, candy, tables):
+        pass
