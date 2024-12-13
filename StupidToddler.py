@@ -4,14 +4,11 @@ from Toddler import Toddler
 
 
 class StupidToddler(Toddler):
+    TYPE = 5
 
-<<<<<<< HEAD
-    def __init__(self, position, id,  table, direction, hunger):
-        super().__init__(id,position, direction, table)
-=======
-    def __init__(self, id, position,  table, direction, type):
-        super().__init__(id,position,table, direction,type)
->>>>>>> a60b8c65fe18d08713072469fd25cf7077b88204
+    def __init__(self, id, position, direction, pos_table):
+        super().__init__(id, position, direction, pos_table)
+
 
     def strategy(self, candy, teacher, tables):
         if self._has_candy and not self._table:

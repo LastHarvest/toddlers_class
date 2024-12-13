@@ -2,9 +2,9 @@
 from Toddler import Toddler
 
 class AfraidToddler(Toddler):
-
-    def __init__(self, id, position, pos_table, direction, type):
-        super().__init__(id, position, pos_table, direction, type)
+    TYPE = 0
+    def __init__(self, id, position, direction, pos_table):
+        super().__init__(id, position, direction, pos_table)
 
     def strategy(self, candy, teacher, tables):
         if self._has_candy:

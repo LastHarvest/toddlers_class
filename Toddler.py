@@ -3,17 +3,16 @@ from abc import ABC, abstractmethod
 
 class Toddler(Human):
 
-    def __init__(self, id,position, direction, pos_table,type):
+    def __init__(self, id,position, direction, pos_table):
         super().__init__(id,position, direction, pos_table)
         self._type = type
         self._nb_candy = 0
         self._has_candy = False
-<<<<<<< HEAD
-=======
+
 
     def get_type(self):
         return self._type
->>>>>>> a60b8c65fe18d08713072469fd25cf7077b88204
+
 
     def get_nb_candy(self):
         return self._nb_candy

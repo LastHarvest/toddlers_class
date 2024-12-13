@@ -152,6 +152,9 @@ def draw_players():
         color = colors[i % len(colors)]
         pygame.draw.circle(screen, color, (pixel_pos[0] + cell_size // 2, pixel_pos[1] + cell_size // 2), cell_size // 3)
 
+
+
+
     teacher = game_instance.get_teacher()
     teacher_pos = teacher.get_position()
     pixel_pos = (teacher_pos[0] * cell_size, teacher_pos[1] * cell_size)

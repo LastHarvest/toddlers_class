@@ -7,6 +7,9 @@ from LyingToddler import *
 from RunningToddler import *
 from StupidToddler import *
 from HungryToddler import *
+from CrazyToddler import *
+
+import random
 
 
 class Game:
@@ -32,12 +35,12 @@ class Game:
 
     def initialize_players(self, grid_size, nbToddler):
         tabToddlers =[
-            AfraidToddler(1,(1,1),(1,1), "right", "Afraid"),
-            CrazyToddler(1, (1,1),(1,1), "left", "Crazy"),
-            StupidToddler(1,(1,1),(1,1), "right", "InLove"),
-            LyingToddler(1, (1,1),(1,1), "left", "Lying"),
-            RunningToddler(1,(1,1),(1,1), "right", "Running"),
-            HungryToddler(1, (1,1),(1,1), "left","Stupid",1)
+            AfraidToddler(1,(1,1), "right",(1,1)),
+            CrazyToddler(1, (1,1), "left",(1,1)),
+            StupidToddler(1, (1,1), "left",(1,1)),
+            LyingToddler(1, (1,1),(1,1), "left"),
+            RunningToddler(1, (1,1), "left",(1,1)),
+            HungryToddler(1, (1,1), "left",(1,1),1)
         ]
         listTableNotAuthorized=[]
 

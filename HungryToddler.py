@@ -4,23 +4,17 @@ from Toddler import Toddler
 
 
 class HungryToddler(Toddler):
+    TYPE = 2
 
-<<<<<<< HEAD
-    def __init__(self, id, position, table, direction, hunger):
-        super().__init__(id, position, direction, table)
-        self._hunger = hunger
-        self._cooldown = hunger
-
-=======
-    def __init__(self, id, position, table, direction,type, hunger):
-        super().__init__(id, position, table, direction,type)
+    def __init__(self, id, position, direction, pos_table, hunger):
+        super().__init__(id, position, direction, pos_table)
         self._hunger = hunger
         self._cooldown = hunger
 
     def set_hunger(self,hung):
         self._hunger = hung
 
->>>>>>> a60b8c65fe18d08713072469fd25cf7077b88204
+
     def get_hunger(self):
         return self._hunger
 
