@@ -16,11 +16,11 @@ class Toddler(Human):
             self._nb_candy += 1
 
     @abstractmethod
-    def strategy(self, candy,teacher):
+    def strategy(self, candy,teacher, tables):
         pass
 
     @abstractmethod
-    def to_candy(self, candy, teacher):
+    def to_candy(self, candy, teacher, toddler):
         pass
 
     

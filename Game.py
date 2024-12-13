@@ -35,14 +35,16 @@ class Game:
 
     def action(self):
         toddlers = self._toddlers
-
-        self._teacher.watch_children(toddlers)
-
-        print(f"Teacher : {self._teacher.get_position()}")
-
+        for i in range(2):
+            for t in toddlers:
+                if self._teacher.caught(t):
+                    print("CAUGHT")
+                    self._running = False
+            self._teacher.watch_children(toddlers, self._initial_positions)
         for toddler in toddlers:
-            # toddler.strategy(self._candy, self._teacher)
-            toddler.move_down()
+            if toddler.get_position() == self._teacher.get_position():
+                self._running = False
+            toddler.strategy(self._candy, self._teacher, self._initial_positions)
             toddler.at_table()
 
     def get_running(self):
