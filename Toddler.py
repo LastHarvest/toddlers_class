@@ -3,9 +3,10 @@ from abc import ABC, abstractmethod
 
 class Toddler(Human):
 
-    def __init__(self, id,position, direction, pos_table):
+    def __init__(self, id,position, direction, pos_table,type):
         super().__init__(id,position, direction, pos_table)
         self._nb_candy = 0
+        self._type = type
 
     def get_nb_candy(self):
         return self._nb_candy

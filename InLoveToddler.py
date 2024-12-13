@@ -4,8 +4,8 @@ from Toddler import Toddler
 # Cherche juste à aller voir la prof.
 
 class InLoveToddler(Toddler):
-    def __init__(self, id, position, pos_table, direction):
-        super().__init__(id, position, direction, pos_table)
+    def __init__(self, id, position, pos_table, direction,type):
+        super().__init__(id,position, direction, pos_table, type)
 
     def strategy(self, candy, teacher):
         if self.get_position == self._pos_table and self._table == False:

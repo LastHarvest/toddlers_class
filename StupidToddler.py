@@ -5,13 +5,17 @@ from Toddler import Toddler
 
 class StupidToddler(Toddler):
 
-    def __init__(self, position, id,  table, direction, hunger):
-        super().__init__(id,position, direction, table)
+    def __init__(self, position, id,  table, direction,type, hunger):
+        super().__init__(id,position, table, direction,type )
         self._hunger = hunger
         self._cooldown = hunger
 
+    def set_hunger(self,hung):
+        self._hunger = hung
+
     def get_hunger(self):
         return self._hunger
+    
     
     def get_cooldown(self):
         return self._cooldown

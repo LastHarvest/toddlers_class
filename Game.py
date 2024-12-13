@@ -5,6 +5,10 @@ from Toddler import Toddler
 from Teacher import Teacher
 from CrazyToddler import *
 from AfraidToddler import *
+from InLoveToddler import *
+from LyingToddler import *
+from RunningToddler import *
+from StupidToddler import *
 
 
 class Game:
@@ -15,37 +19,69 @@ class Game:
         self._teacher = Teacher(3, (6, 0), (6, 0), "right")
         self._candy = (6, 12)
         self._initial_positions = []
-        self.initialize_players(grid_size)
+        self.initialize_players(grid_size,10)
+    
+    def InitTables(self, grid_size, listTableNotAuthorized):
+        max_attempts = 100  # Limiter les tentatives pour éviter une boucle infinie
+        for _ in range(max_attempts):
+            y = random.randrange(3, grid_size - 3)  # Respecte une marge de 3 en haut/bas
+            x = random.randrange(0, grid_size)     # Toute la largeur est possible
+            if (x, y) not in listTableNotAuthorized:
+                return (x, y)
+        raise ValueError("Impossible de trouver une position disponible.")  # Gestion d'erreur si aucune position n'est libre
 
-    def initialize_players(self, grid_size):
-        grid_center_x = grid_size // 2
-        grid_center_y = grid_size // 2
-        left_positions = [(grid_center_x - 2, grid_center_y - 3 + i * 2) for i in range(4)]
-        right_positions = [(grid_center_x + 2, grid_center_y - 3 + i * 2) for i in range(4)]
-        self._initial_positions = left_positions + right_positions
-        for i, pos in enumerate(self._initial_positions):
-            print(i)
-            if i < 4:
-                self._toddlers.append(AfraidToddler(i + 1, pos, pos, "right"))
-            else:
-                self._toddlers.append(CrazyToddler(i + 1, pos, pos, "left"))
-        print(self._toddlers)
+
+    def initialize_players(self, grid_size, nbToddler):
+        tabToddlers =[
+            AfraidToddler(1,(1,1),(1,1), "right", "Afraid"),
+            CrazyToddler(1, (1,1),(1,1), "left", "Crazy"),
+            LyingToddler(1, (1,1),(1,1), "left", "Lying"),
+            RunningToddler(1,(1,1),(1,1), "right", "Running"),
+            StupidToddler(1, (1,1),(1,1), "left","Stupid",1)
+        ]
+        listTableNotAuthorized=[]
+
+        for i in range(nbToddler):
+            r = random.randrange(0,6)
+            toddler = tabToddlers[r]
+            toddler.set_id(i+1)
+            table = self.InitTables(grid_size,listTableNotAuthorized)
+            toddler.set_position(table)
+            toddler.set_pos_table(table)
+
+            listTableNotAuthorized.append(table)  # Ajoute la table elle-même
+            adjacent_positions = [
+                (table[0] + 1, table[1]),  # Case en bas
+                (table[0] - 1, table[1]),  # Case en haut
+                (table[0], table[1] + 1),  # Case à droite
+                (table[0], table[1] - 1),  # Case à gauche
+            ]
+
+            for pos in adjacent_positions:
+                listTableNotAuthorized.append(pos)
+
+            self._initial_positions.append(table)
+
+            if r == 4:
+                temp = random.randrange(10,16)
+                toddler.set_hunger(temp)
+
+            self._toddlers.append(toddler)
+
     def get_initial_positions(self):
         return self._initial_positions
 
     def action(self):
         toddlers = self._toddlers
-        for i in range(2):
-            for t in toddlers:
-                if self._teacher.caught(t):
-                    print("CAUGHT")
-                    self._running = False
-            self._teacher.watch_children(toddlers, self._initial_positions, self._candy)
+
+        self._teacher.watch_children(toddlers)
+
+        print(f"Teacher : {self._teacher.get_position()}")
+
         for toddler in toddlers:
-            if toddler.get_position() == self._teacher.get_position():
-                self._running = False
-            toddler.strategy(self._candy, self._teacher, self._initial_positions)
-            toddler.at_table()
+            toddler.strategy(self._candy, self._teacher)
+            #toddler.move_down()
+            #toddler.at_table()
 
     def get_running(self):
         return self._running

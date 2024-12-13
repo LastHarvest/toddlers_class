@@ -4,8 +4,8 @@ from Toddler import Toddler
 
 class CrazyToddler(Toddler):
 
-    def __init__(self, id, position, pos_table, direction):
-        super().__init__(id, position, direction, pos_table)
+    def __init__(self, id, position, pos_table, direction,type):
+        super().__init__(id,position, direction, pos_table, type)
 
     def strategy(self,candy, teacher, tables):
         # if self._position == self._pos_table and self._table == False:
