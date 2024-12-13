@@ -18,16 +18,15 @@ class Teacher(Human):
     def watch_children(self, toddlers, tables, candy):
         bad_toddlers = []
         for t in toddlers:
-            if not t.get_table():
+            if not t.get_position() == t.get_pos_table() and not t.get_position() == candy:
                 bad_toddlers.append(t)
-                if self._position == t.get_position():
-                    print(f"Toddler{t.get_position()} Teacher {self.get_position()}")
-                    t.get_position = t.get_pos_table()
-                    self.move_to(t.get_position, tables)
-                    return
         if bad_toddlers:
             print("Following bad toddlers")
-            self.move_to(self.choice_toddler_distance_from_candy(bad_toddlers,candy), tables)
+            t = self.choice_toddler_distance_from_candy(bad_toddlers, candy)
+            self.move_to(t.get_position(), tables)
+            if self.caught(t):
+                t._position = t.get_pos_table()
+                t._has_candy = False
 
     def choice_toddler_distance_from_teacher(self, toddlers):
         chosen_toddler = toddlers[0]
@@ -37,11 +36,28 @@ class Teacher(Human):
         return chosen_toddler.get_position()
 
     def choice_toddler_distance_from_candy(self, toddlers, candy):
-        chosen_toddler = toddlers[0]
-        for t in toddlers:
-            if t.distance_to(candy) < chosen_toddler.distance_to(candy):
-                chosen_toddler = t
-        return chosen_toddler.get_position()
+        # Check if there are any toddlers between the teacher and the candy
+        toddlers_between = [t for t in toddlers if t.distance_to(candy) < self.distance(t)]
+
+        if toddlers_between:
+            # Choose the closest toddler between the teacher and the candy
+            chosen_toddler = toddlers_between[0]
+            for t in toddlers_between:
+                if t.distance_to(candy) < chosen_toddler.distance_to(candy):
+                    chosen_toddler = t
+        else:
+            # Choose a toddler who has the candy
+            toddlers_with_candy = [t for t in toddlers if t._has_candy]
+            if toddlers_with_candy:
+                chosen_toddler = toddlers_with_candy[0]
+            else:
+                # Default to the closest toddler if no one has candy
+                chosen_toddler = toddlers[0]
+                for t in toddlers:
+                    if self.distance(t) < self.distance(chosen_toddler):
+                        chosen_toddler = t
+
+        return chosen_toddler
 
     def caught(self, t):
-        return t == self._position
+        return t.get_position() == self._position

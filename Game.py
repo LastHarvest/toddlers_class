@@ -1,4 +1,8 @@
-
+from CrazyToddler import CrazyToddler
+from HungryToddler import HungryToddler
+from LyingToddler import LyingToddler
+from SmartToddler import SmartToddler
+from StupidToddler import StupidToddler
 from Teacher import Teacher
 
 from AfraidToddler import *
@@ -20,20 +24,27 @@ class Game:
         left_positions = [(grid_center_x - 2, grid_center_y - 3 + i * 2) for i in range(4)]
         right_positions = [(grid_center_x + 2, grid_center_y - 3 + i * 2) for i in range(4)]
         self._initial_positions = left_positions + right_positions
+
         for i, pos in enumerate(self._initial_positions):
-            print(i)
-            if i < 4:
+            if i < 2:
                 self._toddlers.append(AfraidToddler(i + 1, pos, pos, "right"))
+            elif i < 4:
+                self._toddlers.append(LyingToddler(i + 1, pos, pos, "right"))
+            elif i < 6:
+                self._toddlers.append(SmartToddler(i + 1, pos, pos, "left"))
             else:
-                self._toddlers.append(AfraidToddler(i + 1, pos, pos, "left"))
+                self._toddlers.append(HungryToddler(i + 1, pos, pos, "left"))
         print(self._toddlers)
+
+
     def get_initial_positions(self):
         return self._initial_positions
 
     def action(self):
         toddlers = self._toddlers
-        for i in range(2):
+        for i in range(1):
             self._teacher.watch_children(toddlers, self._initial_positions, self._candy)
+            print("WATCHING")
         for toddler in toddlers:
             toddler.strategy(self._candy, self._teacher, self._initial_positions)
             toddler.at_table()

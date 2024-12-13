@@ -68,75 +68,6 @@ class Human(ABC):
         self._direction = "right"
 
 
-    def move_to2(self, goal, tables):
-        p = self._position
-        s = 0
-
-        print(f"GOAL: {goal} POS: {p}")
-        if goal == p:
-            print("Already there!")
-            return
-        if goal[0] != p[0]:
-            s= 1
-            print("not the same line")
-            if p[0] < goal[0] and p[0] < 13:
-                tmp = (self._position[0] + 1, self._position[1])
-                if tmp not in tables:
-                    s = 0
-                    print("Turning right")
-                    self.move_right()
-            elif p[0] > goal[0] and p[0] > 0:
-                tmp = (self._position[0] - 1, self._position[1])
-                if tmp not in tables:
-                    s=0
-                    print("Turning left")
-                    self.move_left()
-        else:
-            print("not the same column")
-            s=2
-            if p[1] < goal[1] and p[1] < 13:
-                tmp = (self._position[0], self._position[1] + 1)
-                if tmp not in tables:
-                    s = 0
-                    print("Turning down")
-                    self.move_down()
-            if p[1] > goal[1] and p[1] > 0:
-                tmp = (self._position[0], self._position[1] - 1)
-                if tmp not in tables:
-                    s = 0
-                    print("Turning up")
-                    self.move_up()
-
-        if s == 1:
-            print("blocked")
-            if p[1] < 13:
-                tmp = (self._position[0], self._position[1] + 1)
-                if tmp not in tables:
-                    s = 0
-                    print("Turning down")
-                    self.move_down()
-            else:
-                tmp = (self._position[0], self._position[1] - 1)
-                if tmp not in tables:
-                    s = 0
-                    print("Turning up")
-                    self.move_up()
-        elif s==2:
-            print("blocked2")
-            if p[0] < 13:
-                tmp = (self._position[0] + 1, self._position[1])
-                if tmp not in tables:
-                    s = 0
-                    print("Turning right")
-                    self.move_right()
-            else:
-                tmp = (self._position[0] - 1, self._position[1])
-                if tmp not in tables:
-                    s=0
-                    print("Turning left")
-                    self.move_left()
-        s = 0
-
     def move_to(self, goal, tables):
         def neighbors(pos):
             x, y = pos
@@ -216,3 +147,72 @@ class Human(ABC):
     #                     tmp = (self._position[0], self._position[1] - 1)
     #                     if tmp not in tables:
     #                         self.move_up()
+
+#def move_to2(self, goal, tables):
+    #     p = self._position
+    #     s = 0
+    #
+    #     print(f"GOAL: {goal} POS: {p}")
+    #     if goal == p:
+    #         print("Already there!")
+    #         return
+    #     if goal[0] != p[0]:
+    #         s= 1
+    #         print("not the same line")
+    #         if p[0] < goal[0] and p[0] < 13:
+    #             tmp = (self._position[0] + 1, self._position[1])
+    #             if tmp not in tables:
+    #                 s = 0
+    #                 print("Turning right")
+    #                 self.move_right()
+    #         elif p[0] > goal[0] and p[0] > 0:
+    #             tmp = (self._position[0] - 1, self._position[1])
+    #             if tmp not in tables:
+    #                 s=0
+    #                 print("Turning left")
+    #                 self.move_left()
+    #     else:
+    #         print("not the same column")
+    #         s=2
+    #         if p[1] < goal[1] and p[1] < 13:
+    #             tmp = (self._position[0], self._position[1] + 1)
+    #             if tmp not in tables:
+    #                 s = 0
+    #                 print("Turning down")
+    #                 self.move_down()
+    #         if p[1] > goal[1] and p[1] > 0:
+    #             tmp = (self._position[0], self._position[1] - 1)
+    #             if tmp not in tables:
+    #                 s = 0
+    #                 print("Turning up")
+    #                 self.move_up()
+    #
+    #     if s == 1:
+    #         print("blocked")
+    #         if p[1] < 13:
+    #             tmp = (self._position[0], self._position[1] + 1)
+    #             if tmp not in tables:
+    #                 s = 0
+    #                 print("Turning down")
+    #                 self.move_down()
+    #         else:
+    #             tmp = (self._position[0], self._position[1] - 1)
+    #             if tmp not in tables:
+    #                 s = 0
+    #                 print("Turning up")
+    #                 self.move_up()
+    #     elif s==2:
+    #         print("blocked2")
+    #         if p[0] < 13:
+    #             tmp = (self._position[0] + 1, self._position[1])
+    #             if tmp not in tables:
+    #                 s = 0
+    #                 print("Turning right")
+    #                 self.move_right()
+    #         else:
+    #             tmp = (self._position[0] - 1, self._position[1])
+    #             if tmp not in tables:
+    #                 s=0
+    #                 print("Turning left")
+    #                 self.move_left()
+    #     s = 0

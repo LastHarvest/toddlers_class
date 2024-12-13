@@ -5,10 +5,10 @@ from Toddler import Toddler
 
 class HungryToddler(Toddler):
 
-    def __init__(self, id, position, table, direction, hunger):
+    def __init__(self, id, position, table, direction, ):
         super().__init__(id, position, direction, table)
-        self._hunger = hunger
-        self._cooldown = hunger
+        self._hunger = 10
+        self._cooldown = 10
 
     def get_hunger(self):
         return self._hunger
@@ -20,26 +20,18 @@ class HungryToddler(Toddler):
         self._cooldown -= 1
 
     def strategy(self, candy, teacher, tables):
-        if self._cooldown != 0: return
-        else:
-            if self._has_candy and not self._table and self._cooldown != 0:
-                print("case 1")
-                self.add_cooldown()
-                self.move_to(self._pos_table, tables)
-            elif self._has_candy and self._table:
-                print("case 2")
+        self.add_cooldown()
+        if self._has_candy:
+            if self.at_table():
                 self._has_candy = False
-            elif self._position == candy:
-                print("case 3")
+            else:
+                self.move_to(self._pos_table, tables)
+        else:
+            if self._position == candy and not self._has_candy:
                 self._has_candy = True
                 self._cooldown = self._hunger
                 self.move_to(self._pos_table, tables)
-            elif not self._has_candy and self.distance_to(candy) < 2:
-                print("case 4")
-                self.move_to(self._pos_table, tables)
-            else:
-                print("case 5")
-                self.move_to(candy, tables)
+            elif self._cooldown < 0: self.move_to(candy, tables)
 
     def to_candy(self, teacher, candy, tables):
         pass
