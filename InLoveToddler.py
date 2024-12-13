@@ -7,7 +7,7 @@ class InLoveToddler(Toddler):
     def __init__(self, id, position, pos_table, direction, type):
         super().__init__(id, position, pos_table, direction, type)
 
-    def strategy(self, candy, teacher):
+    def strategy(self, candy, teacher,tables):
         # Si il est à sa place il se lève
         if self.get_position == self._pos_table and self._table == False:
             self.set_table(True)

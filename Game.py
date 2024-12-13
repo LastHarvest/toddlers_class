@@ -80,7 +80,7 @@ class Game:
         print(f"Teacher : {self._teacher.get_position()}")
 
         for toddler in toddlers:
-            toddler.strategy(self._candy, self._teacher)
+            toddler.strategy(self._candy, self._teacher, toddler.get_table())
             #toddler.move_down()
             #toddler.at_table()
 

@@ -17,7 +17,7 @@ class LyingToddler(Toddler):
     def set_lying(self,tf : bool):
         self._lying = tf
 
-    def strategy(self, candy, teacher):
+    def strategy(self, candy, teacher, tables):
         # Si il est sur sa table il se lève pour aller chercher un bonbon si la prof est loin
         if self.get_position == self._pos_table and self._table == False:
             if self.distance(teacher.get_position())>3:
