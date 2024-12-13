@@ -102,30 +102,26 @@ def draw_players():
     initial_positions = game_instance.get_initial_positions()
     for pos in initial_positions:
         pixel_pos = (pos[0] * cell_size, pos[1] * cell_size)
-        #pygame.draw.rect(screen, (255, 255, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
         screen.blit(table, (pixel_pos[0], pixel_pos[1]))
+
     teacher_initial_pos = game_instance.get_teacher().get_pos_table()
     pixel_pos = (teacher_initial_pos[0] * cell_size, teacher_initial_pos[1] * cell_size)
-    #pygame.draw.rect(screen, (255, 255, 0), (pixel_pos[0], pixel_pos[1], cell_size, cell_size))
     screen.blit(table, (pixel_pos[0], pixel_pos[1]))
 
-    for toddler in game_instance.get_toddlers():
+    colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255), (255, 255, 100), (255, 100, 255)]
+
+    for i, toddler in enumerate(game_instance.get_toddlers()):
         toddler_pos = toddler.get_position()
         pixel_pos = (toddler_pos[0] * cell_size, toddler_pos[1] * cell_size)
-        pygame.draw.circle(screen, (0, 0, 255), (pixel_pos[0] + cell_size // 2, pixel_pos[1] + cell_size // 2), cell_size // 3)
-        ''''if toddler.at_table():
-            image = toddlersPic[toddler.get_id()-1][0]
-        else:
-            if toddler.get_position()[0] % 2 == 0:
-                image = toddlersPic[toddler.get_id()-1][1] if toddler.get_direction() == "right" else toddlersPic[toddler.get_id()-1][3]
-            else:
-                image =  toddlersPic[toddler.get_id()-1][2]if toddler.get_direction() == "right" else toddlersPic[toddler.get_id()-1][4]
-        screen.blit(image, (pixel_pos[0], pixel_pos[1]))'''
+        color = colors[i % len(colors)]
+        pygame.draw.circle(screen, color, (pixel_pos[0] + cell_size // 2, pixel_pos[1] + cell_size // 2), cell_size // 3)
+
     teacher = game_instance.get_teacher()
     teacher_pos = teacher.get_position()
     pixel_pos = (teacher_pos[0] * cell_size, teacher_pos[1] * cell_size)
-    #pygame.draw.circle(screen, (255, 192, 203), (pixel_pos[0] + cell_size // 2, pixel_pos[1] + cell_size // 2), cell_size // 3)
     screen.blit(teach, (pixel_pos[0], pixel_pos[1]))
+
+
 def draw_players_pictures():
     pass
 

@@ -1,6 +1,8 @@
 import random
 from time import sleep
 
+from LyingToddler import LyingToddler
+from RunningToddler import RunningToddler
 from Toddler import Toddler
 from Teacher import Teacher
 from CrazyToddler import *
@@ -26,9 +28,9 @@ class Game:
         for i, pos in enumerate(self._initial_positions):
             print(i)
             if i < 4:
-                self._toddlers.append(AfraidToddler(i + 1, pos, pos, "right"))
+                self._toddlers.append(LyingToddler(i + 1, pos, pos, "right"))
             else:
-                self._toddlers.append(CrazyToddler(i + 1, pos, pos, "left"))
+                self._toddlers.append(LyingToddler(i + 1, pos, pos, "left"))
         print(self._toddlers)
     def get_initial_positions(self):
         return self._initial_positions
@@ -36,14 +38,8 @@ class Game:
     def action(self):
         toddlers = self._toddlers
         for i in range(2):
-            for t in toddlers:
-                if self._teacher.caught(t):
-                    print("CAUGHT")
-                    self._running = False
             self._teacher.watch_children(toddlers, self._initial_positions, self._candy)
         for toddler in toddlers:
-            if toddler.get_position() == self._teacher.get_position():
-                self._running = False
             toddler.strategy(self._candy, self._teacher, self._initial_positions)
             toddler.at_table()
 

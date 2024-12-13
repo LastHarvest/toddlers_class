@@ -6,6 +6,7 @@ class Toddler(Human):
     def __init__(self, id,position, direction, pos_table):
         super().__init__(id,position, direction, pos_table)
         self._nb_candy = 0
+        self._has_candy = False
 
     def get_nb_candy(self):
         return self._nb_candy
