@@ -20,8 +20,8 @@ class Game:
         self._teacher = Teacher(3, (6, 0), (6, 0), "right")
         self._candy = (6, 12)
         self._initial_positions = []
-        self.initialize_players(grid_size,10)
-    
+        self.initialize_players(grid_size, 5)
+
     def InitTables(self, grid_size, listTableNotAuthorized):
         max_attempts = 100  # Limiter les tentatives pour éviter une boucle infinie
         for _ in range(max_attempts):
@@ -69,21 +69,18 @@ class Game:
                 toddler.set_hunger(temp)
 
             self._toddlers.append(toddler)
+    
 
     def get_initial_positions(self):
         return self._initial_positions
 
     def action(self):
         toddlers = self._toddlers
-
-        self._teacher.watch_children(toddlers)
-
-        print(f"Teacher : {self._teacher.get_position()}")
-
+        for i in range(2):
+            self._teacher.watch_children(toddlers, self._initial_positions, self._candy)
         for toddler in toddlers:
-            toddler.strategy(self._candy, self._teacher, toddler.get_table())
-            #toddler.move_down()
-            #toddler.at_table()
+            toddler.strategy(self._candy, self._teacher, self._initial_positions)
+            toddler.at_table()
 
     def get_running(self):
         return self._running
