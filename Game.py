@@ -36,14 +36,8 @@ class Game:
     def action(self):
         toddlers = self._toddlers
         for i in range(2):
-            for t in toddlers:
-                if self._teacher.caught(t):
-                    print("CAUGHT")
-                    self._running = False
             self._teacher.watch_children(toddlers, self._initial_positions, self._candy)
         for toddler in toddlers:
-            if toddler.get_position() == self._teacher.get_position():
-                self._running = False
             toddler.strategy(self._candy, self._teacher, self._initial_positions)
             toddler.at_table()
 

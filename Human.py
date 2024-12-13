@@ -67,27 +67,53 @@ class Human(ABC):
         self._position = tmp
         self._direction = "right"
 
+
     def move_to(self, goal, tables):
-        s = self._position
-        g = goal
-        print(f"s : {s} g : {g}")
-        if s == g:
-            print("Equal")
-            return
-        if s[0] < g[0] and s[0] < 13:
-            tmp = (self._position[0] - 1, self._position[1])
-            if tmp not in tables:
-                self.move_right()
-        elif s[0] > g[0] and s[0] > 0:
-            tmp = (self._position[0] + 1, self._position[1])
-            if tmp not in tables:
-                self.move_left()
-        else:
-            if s[1] < g[1] and s[1] < 13:
-                tmp = (self._position[0], self._position[1]+1)
+        p = self._position
+        if goal[0] != p[0]:
+            if p[0] < goal[0] and p[0] < 13:
+                tmp = (self._position[0] + 1, self._position[1])
+                if tmp not in tables:
+                    self.move_right()
+            elif p[0] > goal[0] and p[0] > 0:
+                tmp = (self._position[0] - 1, self._position[1])
+                if tmp not in tables:
+                    self.move_left()
+        elif goal[1] != p[1]:
+            if p[1] < goal[1] and p[1] < 13:
+                tmp = (self._position[0], self._position[1] + 1)
                 if tmp not in tables:
                     self.move_down()
-            elif s[1] > g[1] and s[1] > 0:
+            if p[1] > goal[1] and p[1] > 0:
                 tmp = (self._position[0], self._position[1] - 1)
                 if tmp not in tables:
                     self.move_up()
+        else : print("Equal")
+
+
+
+    # def move_to(self, goal, tables):
+    #     print(f"Mouving toward {goal}")
+    #     s = self._position
+    #     g = goal
+    #     if s == g:
+    #         print("Equal")
+    #         return
+    #     if s[0] < g[0] and s[0] < 13:
+    #         tmp = (self._position[0] - 1, self._position[1])
+    #         if tmp not in tables:
+    #             self.move_right()
+    #
+    #         elif s[0] > g[0] and s[0] > 0:
+    #             tmp = (self._position[0] + 1, self._position[1])
+    #             if tmp not in tables:
+    #                 self.move_left()
+    #             else:
+    #                 if s[1] < g[1] and s[1] < 13:
+    #                     tmp = (self._position[0], self._position[1]+1)
+    #                     if tmp not in tables:
+    #                         self.move_down()
+    #                 elif s[1] > g[1] and s[1] > 0:
+    #                     tmp = (self._position[0], self._position[1] - 1)
+    #                     if tmp not in tables:
+    #                         self.move_up()
