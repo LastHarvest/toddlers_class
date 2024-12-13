@@ -15,7 +15,7 @@ class Teacher(Human):
         o = other.get_position()
         return abs(self._position[0] - o[0]) + abs(self._position[1] - o[1])
 
-    def watch_children(self, toddlers, tables):
+    def watch_children(self, toddlers, tables, candy):
         bad_toddlers = []
         for t in toddlers:
             if not t.get_table():
@@ -27,12 +27,19 @@ class Teacher(Human):
                     return
         if bad_toddlers:
             print("Following bad toddlers")
-            self.move_to(self.choice_toddler(bad_toddlers), tables)
+            self.move_to(self.choice_toddler_distance_from_candy(bad_toddlers,candy), tables)
 
-    def choice_toddler(self, toddlers):
+    def choice_toddler_distance_from_teacher(self, toddlers):
         chosen_toddler = toddlers[0]
         for t in toddlers:
             if self.distance(t) < self.distance(chosen_toddler):
+                chosen_toddler = t
+        return chosen_toddler.get_position()
+
+    def choice_toddler_distance_from_candy(self, toddlers, candy):
+        chosen_toddler = toddlers[0]
+        for t in toddlers:
+            if t.distance_to(candy) < chosen_toddler.distance_to(candy):
                 chosen_toddler = t
         return chosen_toddler.get_position()
 

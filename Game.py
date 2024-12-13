@@ -40,7 +40,7 @@ class Game:
                 if self._teacher.caught(t):
                     print("CAUGHT")
                     self._running = False
-            self._teacher.watch_children(toddlers, self._initial_positions)
+            self._teacher.watch_children(toddlers, self._initial_positions, self._candy)
         for toddler in toddlers:
             if toddler.get_position() == self._teacher.get_position():
                 self._running = False

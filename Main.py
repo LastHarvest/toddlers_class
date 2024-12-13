@@ -117,12 +117,12 @@ def draw_players():
                 image = toddlersPic[toddler.get_id()-1][1] if toddler.get_direction() == "right" else toddlersPic[toddler.get_id()-1][3]
             else:
                 image =  toddlersPic[toddler.get_id()-1][2]if toddler.get_direction() == "right" else toddlersPic[toddler.get_id()-1][4]
-        screen.blit(image, (pixel_pos[0], pixel_pos[1]))
+        screen.blit(image, (pixel_pos[0], pixel_pos[1]))'''
     teacher = game_instance.get_teacher()
     teacher_pos = teacher.get_position()
     pixel_pos = (teacher_pos[0] * cell_size, teacher_pos[1] * cell_size)
     #pygame.draw.circle(screen, (255, 192, 203), (pixel_pos[0] + cell_size // 2, pixel_pos[1] + cell_size // 2), cell_size // 3)
-    screen.blit(teach, (pixel_pos[0], pixel_pos[1]))'''
+    screen.blit(teach, (pixel_pos[0], pixel_pos[1]))
 def draw_players_pictures():
     pass
 
