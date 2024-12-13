@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class Toddler(Human):
 
     def __init__(self, id,position, direction, pos_table,type):
-        super().__init__(id,position, direction, pos_table,type)
+        super().__init__(id,position, direction, pos_table)
         self._type = type
         self._nb_candy = 0
 
