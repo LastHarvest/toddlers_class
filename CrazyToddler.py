@@ -8,7 +8,7 @@ class CrazyToddler(Toddler):
         super().__init__(id, position, direction, pos_table)
 
 
-    def strategie(self,candy,teacher):
+    def strategy(self,candy,teacher):
         # si l'élève est sur sa table alors il se relève pour partir
         if self._position == self._pos_table and self._table == False: 
             self.set_table(True)
