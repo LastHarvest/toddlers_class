@@ -35,6 +35,7 @@ def draw_text_with_contour(text, font, text_color, contour_color, x, y):
 def draw_player_points():
     y_offset = 40
     for toddler in game_instance.get_toddlers():
+        # f ???
         points_text = f"Toddler {toddler.get_id()} Points: {toddler.get_points()}"
         draw_text_with_contour(points_text, font, (0, 0, 0), (255, 255, 255), 10 + font.size(points_text)[0] // 2, y_offset)
         y_offset += 30

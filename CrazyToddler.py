@@ -16,7 +16,7 @@ class CrazyToddler(Toddler):
         elif candy == self._position:
             self.collect_candy(candy)
         # sinon il est debout et va n'importe où
-        elif not self._table:
+        elif self._position != self._pos_table:
             # il a eu son bonbon et retourne à sa place
             if self._table == False :
                 self.move_to(self._pos_table)
