@@ -10,6 +10,9 @@ class StupidToddler(Toddler):
         self._hunger = hunger
         self._cooldown = hunger
 
+    def set_hunger(self,hung):
+        self._hunger = hung
+        
     def get_hunger(self):
         return self._hunger
     

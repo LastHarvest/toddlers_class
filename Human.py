@@ -34,6 +34,9 @@ class Human(ABC):
 
     def get_table(self) -> bool:
         return self._table
+    
+    def set_id(self,idBis):
+        self._id = idBis
 
     def set_direction(self, direction: str):
         self._direction = direction

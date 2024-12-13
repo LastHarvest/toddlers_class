@@ -17,4 +17,7 @@ class InLoveToddler(Toddler):
         # Sinon il va voir la prof
         else:
             self.move_to(teacher)
+
+    def to_candy(self, candy, teacher):
+        pass
             
