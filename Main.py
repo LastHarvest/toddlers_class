@@ -108,7 +108,8 @@ def draw_players():
     colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255), (255, 255, 100), (255, 100, 255)]
 
     for i, toddler in enumerate(game_instance.get_toddlers()):
-        toddler_pos = toddler.get_position()
+
+        toddler_pos= toddler.get_position()
         pixel_pos = (toddler_pos[0] * cell_size, toddler_pos[1] * cell_size)
         color = colors[i % len(colors)]
         pygame.draw.circle(screen, color, (pixel_pos[0] + cell_size // 2, pixel_pos[1] + cell_size // 2), cell_size // 3)

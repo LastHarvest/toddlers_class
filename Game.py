@@ -1,11 +1,6 @@
-import random
-from time import sleep
 
-from LyingToddler import LyingToddler
-from RunningToddler import RunningToddler
-from Toddler import Toddler
 from Teacher import Teacher
-from CrazyToddler import *
+
 from AfraidToddler import *
 
 
@@ -28,9 +23,9 @@ class Game:
         for i, pos in enumerate(self._initial_positions):
             print(i)
             if i < 4:
-                self._toddlers.append(LyingToddler(i + 1, pos, pos, "right"))
+                self._toddlers.append(AfraidToddler(i + 1, pos, pos, "right"))
             else:
-                self._toddlers.append(LyingToddler(i + 1, pos, pos, "left"))
+                self._toddlers.append(AfraidToddler(i + 1, pos, pos, "left"))
         print(self._toddlers)
     def get_initial_positions(self):
         return self._initial_positions
