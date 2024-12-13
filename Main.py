@@ -62,6 +62,9 @@ teach = pygame.transform.scale(teacher, (cell_size*1.2, cell_size*1.2))
 candy = pygame.transform.scale(candy, (cell_size*0.8, cell_size*0.8))
 table = pygame.transform.scale(table, (cell_size*1.2, cell_size*1.2))
 
+background=pygame.image.load('Pictures/classroom.png')
+background_image = pygame.transform.scale(background, (window_size, window_size))
+
 game_instance = Game(grid_size)
 font = pygame.font.Font(None, 27)
 
