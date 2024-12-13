@@ -21,16 +21,23 @@ class StupidToddler(Toddler):
 
 
     def strategy(self, candy, teacher):
+        # Si son temps d'attente est écoulé et qu'il est à sa place il se lève pour aller chercher un bonbon
         if self._cooldown == 0 and self._table==True:
             self.set_table(False)
+        # Si il n'est pas à sa place et que son temps d'attente est écoulé il va chercher un bonbon 
+        # (il ne va pas forcément attendre d'être revenu à sa place pour repartir)
         elif self._cooldown == 0 and self._table()==False:
+            # Si il est sur le bonbon il le ramasse
             if candy == self._position:
                 self.collect_candy(candy)
-                self._hunger = 0
+                self._cooldown = self._hunger
+            # Sinon il va le chercher
             else :
                 self.to_candy(teacher, candy)
+        # Sinon il enlève un à son temps d'attente
         else :
             self.add_cooldown()
+            # et retourn à sa place si il n'y est pas déjà
             if self._position != self._pos_table :
                 self.move_to(self._pos_table)
 
