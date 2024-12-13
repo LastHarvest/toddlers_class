@@ -5,39 +5,37 @@ from Toddler import Toddler
 
 class RunningToddler(Toddler):
 
-
     def __init__(self, id, position, pos_table, direction):
         super().__init__(id, position, direction, pos_table)
 
+    def strategy(self, candy, teacher, tables):
+        # if self._position == self._pos_table and not self._table:
+        #     if self.distance_to(teacher.get_position()) > 3:
+        #         self.set_table(True)
+        # elif candy == self._position:
+        #     self.collect_candy(candy)
+        # elif self._position != self._pos_table and not self._table:
+        #     self.move_to(self._pos_table, tables)
+        # else:
+        #     self.to_candy(teacher.get_position(), candy, tables)
 
-    def strategy(self, candy, teacher):
-        if self.get_position == self._pos_table and self._table() == False:
-            if self.distance(teacher.get_pos())>3:
-                self.set_table(True)
-        elif candy == self._position:
-            self.collect_candy(self,candy)
-        elif self.get_position != self._pos_table and self._table() == False :
-            self.move_to(self._pos_table)
-        else :
-            self.to_candy(teacher, candy)
-            self.to_candy(teacher, candy)
-            
+        # if self._position == teacher.get_position():
+        #     self._position = self._pos_table
+        # elif self.distance_to(teacher.get_position()) < 1:
+        #     self.move_to(self._pos_table, tables)
+        # else: self.move_to(candy, tables)
+        if self._has_candy and not self._table:
+            print("\n HAS CANDY GOING BACK\n")
+            self.move_to(self._pos_table, tables)
+        elif self._has_candy and self._table:
+            print("\n HAS CANDY GOING AGAIN\n")
+            self._has_candy = False
+        elif self._position == teacher.get_position():
+            print("\n CAUGHT\n")
+            self._position = self._pos_table
+        elif not self._has_candy:
+            self.move_to(candy, tables)
+            self.move_to(candy, tables)
 
-
-    def to_candy(self, teacher, candy):
-        s = self._position
-        t = teacher.get_pos()
-        c = candy
-        if self.distance(t) > 3 :
-            if s[0] < c[0] and s[0] < 6:
-                self.move_left()
-            elif s[0] > c[0] and s[0] > 0:
-                self.move_right()
-            else:
-                if s[1] < c[1] and s[1] < 6:
-                    self.move_down()
-                elif s[1] > c[1] and s[1] > 0:
-                    self.move_up()
-
-
-    
+    def to_candy(self, teacher, candy, tables):
+        pass

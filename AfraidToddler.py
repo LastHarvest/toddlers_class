@@ -31,7 +31,8 @@ class AfraidToddler(Toddler):
         elif self._position == teacher.get_position():
             print("\n CAUGHT\n")
             self._position = self._pos_table
-        else: self.move_to(candy,tables)
+        elif not self._has_candy and self.distance_to(teacher.get_position()) < 2: self.move_to(self._pos_table, tables)
+        else : self.move_to(candy,tables)
 
     def to_candy(self, teacher, candy, tables):
-        self.move_to(teacher, tables)
+        pass

@@ -19,12 +19,16 @@ class CrazyToddler(Toddler):
         #         self.move_to(self._pos_table)
         #     else :
         #         self.to_candy(candy,teacher)
-        if self._position == teacher.get_position():
+        if self._has_candy and self._table:
+            print("\n HAS CANDY GOING AGAIN\n")
+            self._has_candy = False
+        elif self._position == teacher.get_position():
+            print("\n CAUGHT\n")
             self._position = self._pos_table
-        elif self.distance_to(teacher.get_position()) < 3:
-            self.move_to(self._pos_table, tables)
         else:
-            self.move_to(candy, tables)
+            choice = randrange(2)
+            if choice == 0: self.move_to(self._pos_table, tables)
+            else: self.move_to(candy, tables)
 
     def to_candy(self, teacher, candy, tables):
         pass
