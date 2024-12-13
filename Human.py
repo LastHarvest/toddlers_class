@@ -49,29 +49,45 @@ class Human(ABC):
 
 
     def move_down(self):
-        print("Teacher")
-        self._position = (self._position[0], self._position[1] + 1)
+        tmp = (self._position[0], self._position[1] + 1)
+        self._position = tmp
 
     def move_up(self):
-        self._position = (self._position[0], self._position[1] - 1)
+        tmp = (self._position[0], self._position[1] - 1)
+        self._position = tmp
+
 
     def move_left(self):
-        self._position = (self._position[0] - 1, self._position[1])
-        self._direction= "left"
+        tmp = (self._position[0] - 1, self._position[1])
+        self._position = tmp
+        self._direction = "left"
 
     def move_right(self):
-        self._position = (self._position[0] + 1, self._position[1])
-        self._direction= "right"
+        tmp = (self._position[0] + 1, self._position[1])
+        self._position = tmp
+        self._direction = "right"
 
-    def move_to(self, goal):
+    def move_to(self, goal, tables):
         s = self._position
-        g = goal.get_position()
+        g = goal
+        print(f"s : {s} g : {g}")
+        if s == g:
+            print("Equal")
+            return
         if s[0] < g[0] and s[0] < 13:
-            self.move_right()
+            tmp = (self._position[0] - 1, self._position[1])
+            if tmp not in tables:
+                self.move_right()
         elif s[0] > g[0] and s[0] > 0:
-            self.move_left()
+            tmp = (self._position[0] + 1, self._position[1])
+            if tmp not in tables:
+                self.move_left()
         else:
             if s[1] < g[1] and s[1] < 13:
-                self.move_down()
+                tmp = (self._position[0], self._position[1]+1)
+                if tmp not in tables:
+                    self.move_down()
             elif s[1] > g[1] and s[1] > 0:
-                self.move_up()
+                tmp = (self._position[0], self._position[1] - 1)
+                if tmp not in tables:
+                    self.move_up()
