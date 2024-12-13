@@ -154,7 +154,7 @@ def draw_players():
         toddler_pos= toddler.get_position()
         pixel_pos = (toddler_pos[0] * cell_size, toddler_pos[1] * cell_size)
         index = toddler.TYPE
-        print("TYPE",toddler.TYPE,"Table",toddler.get_table(),"pos",toddler.get_position(),"dir",toddler.get_direction(),"candy",toddler.get_has_candy())
+        #print("TYPE",toddler.TYPE,"Table",toddler.get_table(),"pos",toddler.get_position(),"dir",toddler.get_direction(),"candy",toddler.get_has_candy())
         if toddler.get_table():
             image=toddlersPic[index][0]
         else:
