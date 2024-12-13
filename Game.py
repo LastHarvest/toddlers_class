@@ -20,7 +20,7 @@ class Game:
         self._teacher = Teacher(3, (6, 0), (6, 0), "right")
         self._candy = (6, 12)
         self._initial_positions = []
-        self.initialize_players(grid_size, 5)
+        self.initialize_players(grid_size, 7)
 
     def InitTables(self, grid_size, listTableNotAuthorized):
         max_attempts = 100  # Limiter les tentatives pour éviter une boucle infinie
