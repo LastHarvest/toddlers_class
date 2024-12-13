@@ -1,6 +1,14 @@
 from abc import ABC, abstractmethod
 import math
 import heapq
+<<<<<<< HEAD
+=======
+
+
+from abc import ABC, abstractmethod
+import math
+import heapq
+>>>>>>> a60b8c65fe18d08713072469fd25cf7077b88204
 class Human(ABC):
     def __init__(self,id: int, position: tuple, direction: str, pos_table: tuple):
         self._id = id
@@ -34,6 +42,9 @@ class Human(ABC):
 
     def get_table(self) -> bool:
         return self._table
+    
+    def set_id(self,idBis):
+        self._id = idBis
 
     def set_direction(self, direction: str):
         self._direction = direction
@@ -215,4 +226,8 @@ class Human(ABC):
     #                 elif s[1] > g[1] and s[1] > 0:
     #                     tmp = (self._position[0], self._position[1] - 1)
     #                     if tmp not in tables:
+<<<<<<< HEAD
     #                         self.move_up()
+=======
+    #                         self.move_up()
+>>>>>>> a60b8c65fe18d08713072469fd25cf7077b88204

@@ -35,6 +35,7 @@ tod2w1lc = pygame.image.load('Pictures/characters/tod2w1lc.png')
 tod2w2rc = pygame.image.load('Pictures/characters/tod2w2rc.png')
 tod2w2lc = pygame.image.load('Pictures/characters/tod2w2lc.png')
 
+
 tod3 = pygame.image.load('Pictures/characters/tod3.png')
 tod3w1r = pygame.image.load('Pictures/characters/tod3w1r.png')
 tod3w1l = pygame.image.load('Pictures/characters/tod3w1l.png')
@@ -54,7 +55,6 @@ tod4w1rc = pygame.image.load('Pictures/characters/tod4w1rc.png')
 tod4w1lc = pygame.image.load('Pictures/characters/tod4w1lc.png')
 tod4w2rc = pygame.image.load('Pictures/characters/tod4w2rc.png')
 tod4w2lc = pygame.image.load('Pictures/characters/tod4w2lc.png')
-
 
 tod5 = pygame.image.load('Pictures/characters/tod5.png')
 tod5w1r = pygame.image.load('Pictures/characters/tod5w1r.png')
@@ -83,8 +83,9 @@ toddlersPic = [[tod1, tod1w1r, tod1w1l, tod1w2r, tod1w2l, tod1w1rc, tod1w1lc, to
                [tod5, tod5w1r, tod5w1l, tod5w2r, tod5w2l, tod5w1rc, tod5w1lc, tod5w2rc, tod5w2lc],
                [tod6, tod6w1r, tod6w1l, tod6w2r, tod6w2l, tod6w1rc, tod6w1lc, tod6w2rc, tod6w2lc]]
 
+
 for pic in toddlersPic:
-    for i in range(5):
+    for i in range(8):
         pic[i] = pygame.transform.scale(pic[i], (cell_size*1.1, cell_size*1.1))
 
 teacher = pygame.image.load('Pictures/characters/teach.png')
@@ -94,8 +95,10 @@ teach = pygame.transform.scale(teacher, (cell_size*1.2, cell_size*1.2))
 candy = pygame.transform.scale(candy, (cell_size*0.8, cell_size*0.8))
 table = pygame.transform.scale(table, (cell_size*1.2, cell_size*1.2))
 
+
 background=pygame.image.load('Pictures/classroom.png')
 background_image = pygame.transform.scale(background, (window_size, window_size))
+
 
 game_instance = Game(grid_size)
 font = pygame.font.Font(None, 27)
