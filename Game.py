@@ -33,12 +33,12 @@ class Game:
 
     def initialize_players(self, grid_size, nbToddler):
         tabToddlers =[
-            AfraidToddler(1,(1,1),(1,1), "right"),
-            CrazyToddler(1, (1,1),(1,1), "left"),
-            InLoveToddler(1,(1,1),(1,1), "right"),
-            LyingToddler(1, (1,1),(1,1), "left"),
-            RunningToddler(1,(1,1),(1,1), "right"),
-            StupidToddler(1, (1,1),(1,1), "left",1)
+            AfraidToddler(1,(1,1),(1,1), "right", "Afraid"),
+            CrazyToddler(1, (1,1),(1,1), "left", "Crazy"),
+            InLoveToddler(1,(1,1),(1,1), "right", "InLove"),
+            LyingToddler(1, (1,1),(1,1), "left", "Lying"),
+            RunningToddler(1,(1,1),(1,1), "right", "Running"),
+            StupidToddler(1, (1,1),(1,1), "left","Stupid",1)
         ]
         listTableNotAuthorized=[]
 
@@ -80,9 +80,9 @@ class Game:
         print(f"Teacher : {self._teacher.get_position()}")
 
         for toddler in toddlers:
-            #toddler.strategy(self._candy, self._teacher)
-            toddler.move_down()
-            toddler.at_table()
+            toddler.strategy(self._candy, self._teacher)
+            #toddler.move_down()
+            #toddler.at_table()
 
     def get_running(self):
         return self._running

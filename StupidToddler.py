@@ -5,8 +5,8 @@ from Toddler import Toddler
 
 class StupidToddler(Toddler):
 
-    def __init__(self, position, id,  table, direction, hunger):
-        super().__init__(id,position, direction, table)
+    def __init__(self, id, position,  table, direction, type, hunger):
+        super().__init__(id,position,table, direction,type)
         self._hunger = hunger
         self._cooldown = hunger
 

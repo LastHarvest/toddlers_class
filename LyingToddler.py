@@ -6,8 +6,8 @@ from Toddler import Toddler
 
 class LyingToddler(Toddler):
 
-    def __init__(self, id, position, pos_table, direction):
-        super().__init__(id, position, direction, pos_table)
+    def __init__(self, id, position, pos_table, direction, type):
+        super().__init__(id, position, pos_table, direction, type)
         self._lying = False
 
 
