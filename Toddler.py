@@ -13,6 +13,8 @@ class Toddler(Human):
     def get_type(self):
         return self._type
 
+    def get_has_candy(self):
+        return self._has_candy
 
     def get_nb_candy(self):
         return self._nb_candy

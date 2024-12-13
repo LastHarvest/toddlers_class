@@ -24,7 +24,6 @@ tod1w1lc = pygame.image.load('Pictures/characters/tod1w1lc.png')
 tod1w2rc = pygame.image.load('Pictures/characters/tod1w2rc.png')
 tod1w2lc = pygame.image.load('Pictures/characters/tod1w2lc.png')
 
-
 tod2 = pygame.image.load('Pictures/characters/tod2.png')
 tod2w1r = pygame.image.load('Pictures/characters/tod2w1r.png')
 tod2w1l = pygame.image.load('Pictures/characters/tod2w1l.png')
@@ -34,7 +33,6 @@ tod2w1rc = pygame.image.load('Pictures/characters/tod2w1rc.png')
 tod2w1lc = pygame.image.load('Pictures/characters/tod2w1lc.png')
 tod2w2rc = pygame.image.load('Pictures/characters/tod2w2rc.png')
 tod2w2lc = pygame.image.load('Pictures/characters/tod2w2lc.png')
-
 
 tod3 = pygame.image.load('Pictures/characters/tod3.png')
 tod3w1r = pygame.image.load('Pictures/characters/tod3w1r.png')
@@ -88,10 +86,18 @@ for pic in toddlersPic:
     for i in range(8):
         pic[i] = pygame.transform.scale(pic[i], (cell_size*1.1, cell_size*1.1))
 
-teacher = pygame.image.load('Pictures/characters/teach.png')
+teach = pygame.image.load('Pictures/characters/teach.png')
+teachw1r = pygame.image.load('Pictures/characters/teachw1r.png')
+teachw1l = pygame.image.load('Pictures/characters/teachw1l.png')
+teachw2r = pygame.image.load('Pictures/characters/teachw2r.png')
+teachw2l = pygame.image.load('Pictures/characters/teachw2l.png')
+teach = pygame.transform.scale(teach, (cell_size*1.2, cell_size*1.2))
+teachw1r = pygame.transform.scale(teachw1r, (cell_size*1.2, cell_size*1.2))
+teachw1l = pygame.transform.scale(teachw1l, (cell_size*1.2, cell_size*1.2))
+teachw2r = pygame.transform.scale(teachw2r, (cell_size*1.2, cell_size*1.2))
+
 candy = pygame.image.load('Pictures/bonbons.png')
 table = pygame.image.load('Pictures/table.png')
-teach = pygame.transform.scale(teacher, (cell_size*1.2, cell_size*1.2))
 candy = pygame.transform.scale(candy, (cell_size*0.8, cell_size*0.8))
 table = pygame.transform.scale(table, (cell_size*1.2, cell_size*1.2))
 
@@ -143,26 +149,41 @@ def draw_players():
     pixel_pos = (teacher_initial_pos[0] * cell_size, teacher_initial_pos[1] * cell_size)
     screen.blit(table, (pixel_pos[0], pixel_pos[1]))
 
-    colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255), (255, 255, 100), (255, 100, 255)]
 
-    for i, toddler in enumerate(game_instance.get_toddlers()):
-
+    for toddler in game_instance.get_toddlers():
         toddler_pos= toddler.get_position()
         pixel_pos = (toddler_pos[0] * cell_size, toddler_pos[1] * cell_size)
-        color = colors[i % len(colors)]
-        pygame.draw.circle(screen, color, (pixel_pos[0] + cell_size // 2, pixel_pos[1] + cell_size // 2), cell_size // 3)
-
+        index = toddler.TYPE
+        print("TYPE",toddler.TYPE,"Table",toddler.get_table(),"pos",toddler.get_position(),"dir",toddler.get_direction(),"candy",toddler.get_has_candy())
+        if toddler.get_table():
+            image=toddlersPic[index][0]
+        else:
+            if toddler.get_direction() == 'right':
+                if not toddler.get_has_candy():
+                    image=toddlersPic[index][1] if toddler_pos[0] % 2 == 0 else toddlersPic[index][3]
+                else:
+                    image=toddlersPic[index][5] if toddler_pos[0] % 2 == 0 else toddlersPic[index][7]
+            else:
+                if not toddler.get_has_candy():
+                    image=toddlersPic[index][2] if toddler_pos[0] % 2 == 0 else toddlersPic[index][4]
+                else:
+                    image=toddlersPic[index][6] if toddler_pos[0] % 2 == 0 else toddlersPic[index][8]
+        screen.blit(image, (pixel_pos[0], pixel_pos[1]))
 
 
 
     teacher = game_instance.get_teacher()
     teacher_pos = teacher.get_position()
     pixel_pos = (teacher_pos[0] * cell_size, teacher_pos[1] * cell_size)
-    screen.blit(teach, (pixel_pos[0], pixel_pos[1]))
+    if teacher.get_table():
+        image=teach
+    else:
+        if teacher.get_direction() == 'right':
+            image=teachw1r if teacher_pos[0] % 2 == 0 else teachw2r
+        else:
+            image=teachw1l if teacher_pos[0] % 2 == 0 else teachw2l
+    screen.blit(image, (pixel_pos[0], pixel_pos[1]))
 
-
-def draw_players_pictures():
-    pass
 
 def draw_end_game():
     """Draw the end game screen with players' points."""
@@ -208,6 +229,7 @@ while True:
                 rect = pygame.Rect(x, y, cell_size, cell_size)
                 pygame.draw.rect(screen, (0, 0, 0), rect, 1)
 
+        screen.blit(background, (-60, -50))
         draw_players()
         draw_candy()
 
@@ -216,7 +238,7 @@ while True:
         screen.blit(time_text, (10, 10))
 
         # Update the display
-        #screen.blit(background, (0, 0))
+
         pygame.display.flip()
 
     sleep(1)
