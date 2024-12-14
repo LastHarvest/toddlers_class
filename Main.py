@@ -24,6 +24,7 @@ tod1w1lc = pygame.image.load('Pictures/characters/tod1w1lc.png')
 tod1w2rc = pygame.image.load('Pictures/characters/tod1w2rc.png')
 tod1w2lc = pygame.image.load('Pictures/characters/tod1w2lc.png')
 tod1upc = pygame.image.load('Pictures/characters/tod1upc.png')
+tod1down = pygame.image.load('Pictures/characters/tod1down.png')
 
 tod2 = pygame.image.load('Pictures/characters/tod2.png')
 tod2w1r = pygame.image.load('Pictures/characters/tod2w1r.png')
@@ -35,6 +36,7 @@ tod2w1lc = pygame.image.load('Pictures/characters/tod2w1lc.png')
 tod2w2rc = pygame.image.load('Pictures/characters/tod2w2rc.png')
 tod2w2lc = pygame.image.load('Pictures/characters/tod2w2lc.png')
 tod2upc = pygame.image.load('Pictures/characters/tod2upc.png')
+tod2down = pygame.image.load('Pictures/characters/tod2down.png')
 
 tod3 = pygame.image.load('Pictures/characters/tod3.png')
 tod3w1r = pygame.image.load('Pictures/characters/tod3w1r.png')
@@ -46,6 +48,7 @@ tod3w1lc = pygame.image.load('Pictures/characters/tod3w1lc.png')
 tod3w2rc = pygame.image.load('Pictures/characters/tod3w2rc.png')
 tod3w2lc = pygame.image.load('Pictures/characters/tod3w2lc.png')
 tod3upc = pygame.image.load('Pictures/characters/tod3upc.png')
+tod3down = pygame.image.load('Pictures/characters/tod3down.png')
 
 tod4 = pygame.image.load('Pictures/characters/tod4.png')
 tod4w1r = pygame.image.load('Pictures/characters/tod4w1r.png')
@@ -57,6 +60,7 @@ tod4w1lc = pygame.image.load('Pictures/characters/tod4w1lc.png')
 tod4w2rc = pygame.image.load('Pictures/characters/tod4w2rc.png')
 tod4w2lc = pygame.image.load('Pictures/characters/tod4w2lc.png')
 tod4upc = pygame.image.load('Pictures/characters/tod4upc.png')
+tod4down = pygame.image.load('Pictures/characters/tod4down.png')
 
 tod5 = pygame.image.load('Pictures/characters/tod5.png')
 tod5w1r = pygame.image.load('Pictures/characters/tod5w1r.png')
@@ -68,6 +72,8 @@ tod5w1lc = pygame.image.load('Pictures/characters/tod5w1lc.png')
 tod5w2rc = pygame.image.load('Pictures/characters/tod5w2rc.png')
 tod5w2lc = pygame.image.load('Pictures/characters/tod5w2lc.png')
 tod5upc = pygame.image.load('Pictures/characters/tod5upc.png')
+tod5down = pygame.image.load('Pictures/characters/tod5down.png')
+
 
 tod6 = pygame.image.load('Pictures/characters/tod6.png')
 tod6w1r = pygame.image.load('Pictures/characters/tod6w1r.png')
@@ -79,17 +85,19 @@ tod6w1lc = pygame.image.load('Pictures/characters/tod6w1lc.png')
 tod6w2rc = pygame.image.load('Pictures/characters/tod6w2rc.png')
 tod6w2lc = pygame.image.load('Pictures/characters/tod6w2lc.png')
 tod6upc = pygame.image.load('Pictures/characters/tod6upc.png')
+tod6down = pygame.image.load('Pictures/characters/tod6down.png')
 
-toddlersPic = [[tod1, tod1w1r, tod1w1l, tod1w2r, tod1w2l, tod1w1rc, tod1w1lc, tod1w2rc, tod1w2lc,tod1upc],
-               [tod2, tod2w1r, tod2w1l, tod2w2r, tod2w2l, tod2w1rc, tod2w1lc, tod2w2rc, tod2w2lc,tod2upc],
-               [tod3, tod3w1r, tod3w1l, tod3w2r, tod3w2l, tod3w1rc, tod3w1lc, tod3w2rc, tod3w2lc,tod3upc],
-               [tod4, tod4w1r, tod4w1l, tod4w2r, tod4w2l, tod4w1rc, tod4w1lc, tod4w2rc, tod4w2lc,tod4upc],
-               [tod5, tod5w1r, tod5w1l, tod5w2r, tod5w2l, tod5w1rc, tod5w1lc, tod5w2rc, tod5w2lc,tod5upc],
-               [tod6, tod6w1r, tod6w1l, tod6w2r, tod6w2l, tod6w1rc, tod6w1lc, tod6w2rc, tod6w2lc,tod6upc]]
+
+toddlersPic = [[tod1, tod1w1r, tod1w1l, tod1w2r, tod1w2l, tod1w1rc, tod1w1lc, tod1w2rc, tod1w2lc,tod1upc,tod1down],
+               [tod2, tod2w1r, tod2w1l, tod2w2r, tod2w2l, tod2w1rc, tod2w1lc, tod2w2rc, tod2w2lc,tod2upc,tod2down],
+               [tod3, tod3w1r, tod3w1l, tod3w2r, tod3w2l, tod3w1rc, tod3w1lc, tod3w2rc, tod3w2lc,tod3upc, tod3down],
+               [tod4, tod4w1r, tod4w1l, tod4w2r, tod4w2l, tod4w1rc, tod4w1lc, tod4w2rc, tod4w2lc,tod4upc, tod4down],
+               [tod5, tod5w1r, tod5w1l, tod5w2r, tod5w2l, tod5w1rc, tod5w1lc, tod5w2rc, tod5w2lc,tod5upc,tod5down],
+               [tod6, tod6w1r, tod6w1l, tod6w2r, tod6w2l, tod6w1rc, tod6w1lc, tod6w2rc, tod6w2lc,tod6upc,tod6down]]
 
 
 for pic in toddlersPic:
-    for i in range(10):
+    for i in range(11):
         pic[i] = pygame.transform.scale(pic[i], (cell_size*1.1, cell_size*1.1))
 
 teach = pygame.image.load('Pictures/characters/teach.png')
@@ -177,13 +185,13 @@ def draw_players():
             elif toddler.get_direction() == 'up':
                 image=toddlersPic[index][9]
             else:
-                image=toddlersPic[index][0] #à modifier avec image down
+                image=toddlersPic[index][10]
         screen.blit(image, (pixel_pos[0], pixel_pos[1]))
 
     teacher = game_instance.get_teacher()
     teacher_pos = teacher.get_position()
     pixel_pos = (teacher_pos[0] * cell_size, teacher_pos[1] * cell_size)
-    if teacher.get_table() or teacher.get_direction()=="up":
+    if teacher.get_table() or teacher.get_direction()=="down":
         image=teach
     else:
         if teacher.get_direction() == 'right':
@@ -191,7 +199,7 @@ def draw_players():
         elif teacher.get_direction() == 'left':
             image=teachw1l if teacher_pos[0] % 2 == 0 else teachw2l
         else :
-            image=teach #à changer par image down
+            image=teach #à changer par image up
     screen.blit(image, (pixel_pos[0], pixel_pos[1]))
 
 

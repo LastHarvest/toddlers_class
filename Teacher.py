@@ -60,4 +60,4 @@ class Teacher(Human):
         return chosen_toddler
 
     def caught(self, t):
-        return t.get_position() == self._position
+        return self.next_to(t)

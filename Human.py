@@ -62,6 +62,7 @@ class Human(ABC):
     def move_down(self):
         tmp = (self._position[0], self._position[1] + 1)
         self._position = tmp
+
         self._direction = "down"
 
     def move_up(self):
