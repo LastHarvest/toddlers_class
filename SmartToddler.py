@@ -3,7 +3,7 @@ from Toddler import Toddler
 
 class SmartToddler(Toddler):
     TYPE = 4
-    def __init__(self, id, position, pos_table, direction):
+    def __init__(self, id, position, direction,pos_table):
         super().__init__(id, position, direction, pos_table)
         self._initial_position = position
 

@@ -8,8 +8,8 @@ class HungryToddler(Toddler):
 
     def __init__(self, id, position, direction, pos_table, hunger):
         super().__init__(id, position, direction, pos_table)
-        self._hunger = 10
-        self._cooldown = 10
+        self._hunger = hunger
+        self._cooldown = hunger
 
     def set_hunger(self,hung):
         self._hunger = hung

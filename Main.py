@@ -102,7 +102,8 @@ candy = pygame.transform.scale(candy, (cell_size*0.8, cell_size*0.8))
 table = pygame.transform.scale(table, (cell_size*1.2, cell_size*1.2))
 
 
-background=pygame.image.load('Pictures/classroom.png')
+background=pygame.image.load('Pictures/classroom3.png')
+print(background)
 background_image = pygame.transform.scale(background, (window_size, window_size))
 
 
@@ -229,7 +230,7 @@ while True:
                 rect = pygame.Rect(x, y, cell_size, cell_size)
                 pygame.draw.rect(screen, (0, 0, 0), rect, 1)
 
-        screen.blit(background, (-60, -50))
+        screen.blit(background_image, (0, 0))
         draw_players()
         draw_candy()
 

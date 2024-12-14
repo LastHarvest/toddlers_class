@@ -19,7 +19,7 @@ class AfraidToddler(Toddler):
                 self.move_to(self._pos_table, tables)
 
             elif self.distance_to(teacher.get_position()) < 2:
-                self.move_to(self._pos_table, tables)
+                self.move_to(self._pos_table, tables, )
             elif self._position[0] not in [0,13] and self._position[1] != candy[1]:
                 left_border = (0, self._position[1])
                 right_border = (13, self._position[1])

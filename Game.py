@@ -19,36 +19,36 @@ class Game:
         self.initialize_players(grid_size, 5)
 
 
-    def InitTables(self, grid_size, listTableNotAuthorized):
+    def init_pos(self, grid_size, initial_pos):
         max_attempts = 100  # Limiter les tentatives pour éviter une boucle infinie
         for _ in range(max_attempts):
             y = random.randrange(3, grid_size - 3)  # Respecte une marge de 3 en haut/bas
             x = random.randrange(0, grid_size)     # Toute la largeur est possible
-            if (x, y) not in listTableNotAuthorized:
+            if (x, y) not in initial_pos:
                 return (x, y)
         raise ValueError("Impossible de trouver une position disponible.")  # Gestion d'erreur si aucune position n'est libre
 
 
     def initialize_players(self, grid_size, nbToddler):
         tabToddlers =[
-            AfraidToddler(1,(1,1), "right",(1,1)),
+            AfraidToddler(0,(1,1), "right",(1,1)),
             CrazyToddler(1, (1,1), "left",(1,1)),
-            StupidToddler(1, (1,1), "left",(1,1)),
-            LyingToddler(1, (1,1), "left",(1,1)),
-            SmartToddler(1, (1,1), "left",(1,1)),
-            HungryToddler(1, (1,1), "left",(1,1),1)
+            StupidToddler(2, (1,1), "left",(1,1)),
+            LyingToddler(3, (1,1), "left",(1,1)),
+            SmartToddler(4, (1,1), "left",(1,1)),
+            HungryToddler(5, (1,1), "left",(1,1),1)
         ]
-        listTableNotAuthorized=[]
+        initial_pos=[]
 
         for i in range(nbToddler):
-            r = random.randrange(0,6)
+            r = random.randrange(0,5)
             toddler = tabToddlers[r]
             toddler.set_id(i+1)
-            table = self.InitTables(grid_size,listTableNotAuthorized)
+            table = self.init_pos(grid_size,initial_pos)
             toddler.set_position(table)
             toddler.set_pos_table(table)
 
-            listTableNotAuthorized.append(table)  # Ajoute la table elle-même
+            initial_pos.append(table)  # Ajoute la table elle-même
             adjacent_positions = [
                 (table[0] + 1, table[1]),  # Case en bas
                 (table[0] - 1, table[1]),  # Case en haut
@@ -57,7 +57,7 @@ class Game:
             ]
 
             for pos in adjacent_positions:
-                listTableNotAuthorized.append(pos)
+                initial_pos.append(pos)
 
             self._initial_positions.append(table)
 
