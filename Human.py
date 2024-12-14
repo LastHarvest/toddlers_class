@@ -117,12 +117,12 @@ class Human(ABC):
             return []
 
         if goal in tables and goal != self._pos_table:
-            print("Goal is blocked by a table.")
+            print(f"{self.get_id()}Goal is blocked by a table.")
             return
 
         path = dijkstra(self._position, goal)
         if not path:
-            print("No path found to the goal.")
+            print(f"{self.get_id()}No path found to the goal.")
             return
 
         if len(path) > 1:

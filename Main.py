@@ -229,6 +229,13 @@ def draw_end_game():
 last_time = time.time()
 
 while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_s:
+                game_instance.stop_game()
     while game_instance.get_running():
         if game_instance.get_time()==21:
             game_instance.stop_game()

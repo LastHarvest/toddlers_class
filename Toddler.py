@@ -28,6 +28,9 @@ class Toddler(Human):
             self._has_candy = True
             self._nb_candy += 1
 
+    def minus_candy(self):
+        self._nb_candy -= 1
+
     @abstractmethod
     def strategy(self, candy,teacher, tables):
         pass
