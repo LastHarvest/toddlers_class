@@ -87,7 +87,7 @@ class Human(ABC):
             x, y = pos
             for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
                 new_pos = (x + dx, y + dy)
-                if 0 <= new_pos[0] < 14 and 0 <= new_pos[1] < 14 and (
+                if 0 <= new_pos[0] < 13 and 0 <= new_pos[1] < 13 and (
                         new_pos not in tables or new_pos == self._pos_table):
                     yield new_pos
 
@@ -127,7 +127,8 @@ class Human(ABC):
 
         if len(path) > 1:
             next_step = path[1]
-            if next_step in [t.get_position() for t in Human.all_toddlers] and next_step != Human.teacher.get_position():
+            if next_step in [t.get_position() for t in
+                             Human.all_toddlers] and next_step != Human.teacher.get_position():
                 print("Next step is blocked by another toddler.")
                 return
             if next_step[0] > self._position[0]:
