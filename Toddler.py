@@ -16,12 +16,14 @@ class Toddler(Human):
     def get_has_candy(self):
         return self._has_candy
 
-    def get_nb_candy(self):
+
+
+    def get_points(self):
         return self._nb_candy
 
     def collect_candy(self,candy):
-        if self._position == candy :
-            self.set_table(True)
+        if self.next_to_tuple(candy):
+            self._has_candy = True
             self._nb_candy += 1
 
     @abstractmethod

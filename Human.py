@@ -20,7 +20,7 @@ class Human(ABC):
         position = self._position
         return math.sqrt((other[0] - position[0]) ** 2 + (other[1] - position[1]) ** 2)
 
-    def at_table(self):
+    def at_table(self) -> bool:
         return self._position == self._pos_table
 
     def get_id(self) -> int:
@@ -53,18 +53,28 @@ class Human(ABC):
     def set_pos_table(self, pos_table: tuple):
         self._pos_table = pos_table
 
+    def next_to(self, other):
+        return self.distance(other) == 1
+
+    def next_to_tuple(self,other:tuple):
+        return self.distance_to(other) == 1
+
     def move_down(self):
         tmp = (self._position[0], self._position[1] + 1)
         self._position = tmp
+        self._direction = "down"
 
     def move_up(self):
         tmp = (self._position[0], self._position[1] - 1)
         self._position = tmp
+        self._direction = "up"
+
 
     def move_left(self):
         tmp = (self._position[0] - 1, self._position[1])
         self._position = tmp
         self._direction = "left"
+
 
     def move_right(self):
         tmp = (self._position[0] + 1, self._position[1])

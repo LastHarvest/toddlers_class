@@ -16,7 +16,7 @@ class Game:
         self._teacher = Teacher(3, (6, 0), (6, 0), "right")
         self._candy = (6, 12)
         self._initial_positions = []
-        self.initialize_players(grid_size, 5)
+        self.initialize_players(grid_size, 6)
 
 
     def init_pos(self, grid_size, initial_pos):
@@ -79,7 +79,12 @@ class Game:
             print("WATCHING")
         for toddler in toddlers:
             toddler.strategy(self._candy, self._teacher, self._initial_positions)
-            toddler.at_table()
+            if toddler.at_table() and not toddler.get_table():
+                toddler.set_table(True)
+            if not toddler.at_table() and toddler.get_table():
+                toddler.set_table(False)
+
+
 
     def get_running(self):
         return self._running

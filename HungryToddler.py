@@ -31,8 +31,8 @@ class HungryToddler(Toddler):
             else:
                 self.move_to(self._pos_table, tables)
         else:
-            if self._position == candy and not self._has_candy:
-                self._has_candy = True
+            if self.next_to_tuple(candy) and not self._has_candy:
+                self.collect_candy(candy)
                 self._cooldown = self._hunger
                 self.move_to(self._pos_table, tables)
             elif self._cooldown < 0: self.move_to(candy, tables)

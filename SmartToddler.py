@@ -14,8 +14,8 @@ class SmartToddler(Toddler):
             else:
                 self.move_to(self._pos_table, tables)
         else:
-            if self._position == candy and not self._has_candy:
-                self._has_candy = True
+            if self.next_to_tuple(candy) and not self._has_candy:
+                self.collect_candy(candy)
                 self.move_to(self._pos_table, tables)
 
             elif self.distance_to(teacher.get_position()) < 2:
