@@ -7,10 +7,10 @@ class CrazyToddler(Toddler):
     def __init__(self, id, position, direction, pos_table):
         super().__init__(id, position, direction, pos_table)
 
-    def strategy(self,candy, teacher, tables):
+    def strategy(self, candy, teacher, tables):
         if self._has_candy:
-            if self._table:
-                self._table = False
+            if self.at_table():
+                self._has_candy = False
             else:
                 self.move_to(self._pos_table, tables)
         else:
@@ -18,12 +18,13 @@ class CrazyToddler(Toddler):
                 self._has_candy = True
                 self.move_to(self._pos_table, tables)
 
-            if self.distance_to(teacher.get_position()) < 2:
-                self.move_to(self._pos_table, tables)
-            elif not self._has_candy:
+            else :
                 choice = randrange(2)
-                if choice == 0: self.move_to(teacher.get_position(), tables)
-                else: self.move_to(candy, tables)
+                if choice == 0:
+                    self.move_to(teacher.get_position(),tables)
+                else:
+                    self.move_to(candy,tables)
+
 
     def to_candy(self, teacher, candy, tables):
         pass

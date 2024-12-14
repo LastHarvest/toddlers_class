@@ -1,31 +1,26 @@
-import math
-from random import randrange
+
 from Toddler import Toddler
 
-
-
-class LyingToddler(Toddler):
-    TYPE = 3
-
-    def __init__(self, id, position, direction, pos_table):
+class SmartToddler(Toddler):
+    TYPE = 4
+    def __init__(self, id, position, pos_table, direction):
         super().__init__(id, position, direction, pos_table)
-        self._truth = False
+        self._initial_position = position
 
     def strategy(self, candy, teacher, tables):
-        if self._truth:
+        if self._has_candy:
             if self.at_table():
-                self._truth = False
+                self._has_candy = False
             else:
                 self.move_to(self._pos_table, tables)
         else:
             if self._position == candy and not self._has_candy:
-                self._truth = True
+                self._has_candy = True
                 self.move_to(self._pos_table, tables)
 
             elif self.distance_to(teacher.get_position()) < 2:
                 self.move_to(self._pos_table, tables)
-            else :
-                self.move_to(candy,tables)
+            else : self.move_to(candy,tables)
 
     def to_candy(self, teacher, candy, tables):
         pass

@@ -1,16 +1,12 @@
-
+from CrazyToddler import CrazyToddler
+from HungryToddler import HungryToddler
+from LyingToddler import LyingToddler
+from SmartToddler import SmartToddler
+from StupidToddler import StupidToddler
 from Teacher import Teacher
-
 from AfraidToddler import *
-from InLoveToddler import *
-from LyingToddler import *
-from RunningToddler import *
-from StupidToddler import *
-from HungryToddler import *
-from CrazyToddler import *
 
 import random
-
 
 class Game:
     def __init__(self, grid_size):
@@ -38,8 +34,8 @@ class Game:
             AfraidToddler(1,(1,1), "right",(1,1)),
             CrazyToddler(1, (1,1), "left",(1,1)),
             StupidToddler(1, (1,1), "left",(1,1)),
-            LyingToddler(1, (1,1),(1,1), "left"),
-            RunningToddler(1, (1,1), "left",(1,1)),
+            LyingToddler(1, (1,1), "left",(1,1)),
+            SmartToddler(1, (1,1), "left",(1,1)),
             HungryToddler(1, (1,1), "left",(1,1),1)
         ]
         listTableNotAuthorized=[]
@@ -70,7 +66,7 @@ class Game:
                 toddler.set_hunger(temp)
 
             self._toddlers.append(toddler)
-    
+
 
 
     def get_initial_positions(self):
@@ -78,8 +74,9 @@ class Game:
 
     def action(self):
         toddlers = self._toddlers
-        for i in range(2):
+        for i in range(1):
             self._teacher.watch_children(toddlers, self._initial_positions, self._candy)
+            print("WATCHING")
         for toddler in toddlers:
             toddler.strategy(self._candy, self._teacher, self._initial_positions)
             toddler.at_table()
