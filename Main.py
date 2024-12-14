@@ -208,6 +208,12 @@ def draw_players():
             image = teach  # to be changed to image up
     screen.blit(image, (pixel_pos[0], pixel_pos[1]))
 
+    # Draw the number of caught toddlers on the teacher's initial position
+    nb_caught_text = font.render(str(teacher.get_nb_caught()), True, (0, 0, 0))
+    screen.blit(nb_caught_text, (teacher_initial_pos[0] * cell_size, teacher_initial_pos[1] * cell_size))
+
+
+
 def draw_end_game():
     """Draw the end game screen with players' points."""
     screen.fill((255, 255, 255))

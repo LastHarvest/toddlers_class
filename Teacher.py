@@ -7,9 +7,14 @@ class Teacher(Human):
 
     def __init__(self, id, position, pos_table, direction):
         super().__init__(id, position, direction, pos_table)
+        self._nb_caught = 0
 
     def get_position(self):
         return self._position
+
+    def get_nb_caught(self):
+        return self._nb_caught
+
 
     def distance(self, other) -> float:
         o = other.get_position()
@@ -29,6 +34,7 @@ class Teacher(Human):
                 if t._has_candy:
                     t._has_candy = False
                     t.minus_candy()
+                self._nb_caught += 1
 
     def choice_toddler_distance_from_teacher(self, toddlers):
         chosen_toddler = toddlers[0]
