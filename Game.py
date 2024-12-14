@@ -1,6 +1,7 @@
 from CrazyToddler import CrazyToddler
 from HungryToddler import HungryToddler
 from LyingToddler import LyingToddler
+from RunningToddler import RunningToddler
 from SmartToddler import SmartToddler
 from StupidToddler import StupidToddler
 from Teacher import Teacher
@@ -34,7 +35,7 @@ class Game:
             AfraidToddler(0,(1,1), "right",(1,1)),
             CrazyToddler(1, (1,1), "left",(1,1)),
             StupidToddler(2, (1,1), "left",(1,1)),
-            LyingToddler(3, (1,1), "left",(1,1)),
+            RunningToddler(3, (1,1), "left",(1,1)),
             SmartToddler(4, (1,1), "left",(1,1)),
             HungryToddler(5, (1,1), "left",(1,1),1)
         ]

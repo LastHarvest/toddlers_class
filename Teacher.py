@@ -25,9 +25,8 @@ class Teacher(Human):
             t = self.choice_toddler_distance_from_candy(bad_toddlers, candy)
             self.move_to(t.get_position(), tables)
             if self.caught(t):
-                t._position = t.get_pos_table()
+                t.set_position(t.get_pos_table())
                 t._has_candy = False
-
     def choice_toddler_distance_from_teacher(self, toddlers):
         chosen_toddler = toddlers[0]
         for t in toddlers:

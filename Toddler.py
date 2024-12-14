@@ -16,6 +16,8 @@ class Toddler(Human):
     def get_has_candy(self):
         return self._has_candy
 
+    def get_candies(self):
+        return self._nb_candy
 
 
     def get_points(self):
