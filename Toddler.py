@@ -8,7 +8,13 @@ class Toddler(Human):
         self._type = type
         self._nb_candy = 0
         self._has_candy = False
+        self._lost_candy = 0
 
+    def lose_candy_point(self):
+        self._lost_candy += 1
+
+    def get_lost_candy_points(self):
+        return self._lost_candy
 
     def get_type(self):
         return self._type
