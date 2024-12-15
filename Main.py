@@ -163,44 +163,55 @@ def draw_players():
     pixel_pos = (teacher_initial_pos[0] * cell_size, teacher_initial_pos[1] * cell_size)
     screen.blit(table, (pixel_pos[0], pixel_pos[1]))
 
-
     for toddler in game_instance.get_toddlers():
-        toddler_pos= toddler.get_position()
+        toddler_pos = toddler.get_position()
         pixel_pos = (toddler_pos[0] * cell_size, toddler_pos[1] * cell_size)
         index = toddler.TYPE
-        #print("TYPE",toddler.TYPE,"Table",toddler.get_table(),"pos",toddler.get_position(),"dir",toddler.get_direction(),"candy",toddler.get_has_candy())
-        if toddler.get_table() or (toddler.get_direction()=="up" and not toddler.get_has_candy()):
-            image=toddlersPic[index][0]
+
+        if toddler.get_table() or (toddler.get_direction() == "up" and not toddler.get_has_candy()):
+            image = toddlersPic[index][0]
         else:
             if toddler.get_direction() == 'right':
                 if not toddler.get_has_candy():
-                    image=toddlersPic[index][1] if toddler_pos[0] % 2 == 0 else toddlersPic[index][3]
+                    image = toddlersPic[index][1] if toddler_pos[0] % 2 == 0 else toddlersPic[index][3]
                 else:
-                    image=toddlersPic[index][5] if toddler_pos[0] % 2 == 0 else toddlersPic[index][7]
+                    image = toddlersPic[index][5] if toddler_pos[0] % 2 == 0 else toddlersPic[index][7]
             elif toddler.get_direction() == 'left':
                 if not toddler.get_has_candy():
-                    image=toddlersPic[index][2] if toddler_pos[0] % 2 == 0 else toddlersPic[index][4]
+                    image = toddlersPic[index][2] if toddler_pos[0] % 2 == 0 else toddlersPic[index][4]
                 else:
-                    image=toddlersPic[index][6] if toddler_pos[0] % 2 == 0 else toddlersPic[index][8]
+                    image = toddlersPic[index][6] if toddler_pos[0] % 2 == 0 else toddlersPic[index][8]
             elif toddler.get_direction() == 'up':
-                image=toddlersPic[index][9]
+                image = toddlersPic[index][9]
             else:
-                image=toddlersPic[index][10]
+                image = toddlersPic[index][10]
         screen.blit(image, (pixel_pos[0], pixel_pos[1]))
+
+        # Draw the number of candies on the initial position only if the toddler is at its initial position
+        if toddler_pos == toddler.get_pos_table():
+            initial_pos = toddler.get_pos_table()
+            pixel_pos = (initial_pos[0] * cell_size, initial_pos[1] * cell_size)
+            candies_text = font.render(str(toddler.get_candies()), True, (0, 0, 0))
+            screen.blit(candies_text, (pixel_pos[0], pixel_pos[1]))
 
     teacher = game_instance.get_teacher()
     teacher_pos = teacher.get_position()
     pixel_pos = (teacher_pos[0] * cell_size, teacher_pos[1] * cell_size)
-    if teacher.get_table() or teacher.get_direction()=="down":
-        image=teach
+    if teacher.get_table() or teacher.get_direction() == "down":
+        image = teach
     else:
         if teacher.get_direction() == 'right':
-            image=teachw1r if teacher_pos[0] % 2 == 0 else teachw2r
+            image = teachw1r if teacher_pos[0] % 2 == 0 else teachw2r
         elif teacher.get_direction() == 'left':
-            image=teachw1l if teacher_pos[0] % 2 == 0 else teachw2l
-        else :
-            image=teach #à changer par image up
+            image = teachw1l if teacher_pos[0] % 2 == 0 else teachw2l
+        else:
+            image = teach  # to be changed to image up
     screen.blit(image, (pixel_pos[0], pixel_pos[1]))
+
+    # Draw the number of caught toddlers on the teacher's initial position
+    nb_caught_text = font.render(str(teacher.get_nb_caught()), True, (0, 0, 0))
+    screen.blit(nb_caught_text, (teacher_initial_pos[0] * cell_size, teacher_initial_pos[1] * cell_size))
+
 
 
 def draw_end_game():
@@ -224,6 +235,13 @@ def draw_end_game():
 last_time = time.time()
 
 while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_s:
+                game_instance.stop_game()
     while game_instance.get_running():
         if game_instance.get_time()==21:
             game_instance.stop_game()

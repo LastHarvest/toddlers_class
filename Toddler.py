@@ -16,6 +16,8 @@ class Toddler(Human):
     def get_has_candy(self):
         return self._has_candy
 
+    def get_candies(self):
+        return self._nb_candy
 
 
     def get_points(self):
@@ -25,6 +27,9 @@ class Toddler(Human):
         if self.next_to_tuple(candy):
             self._has_candy = True
             self._nb_candy += 1
+
+    def minus_candy(self):
+        self._nb_candy -= 1
 
     @abstractmethod
     def strategy(self, candy,teacher, tables):

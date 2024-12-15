@@ -1,6 +1,7 @@
 from CrazyToddler import CrazyToddler
 from HungryToddler import HungryToddler
 from LyingToddler import LyingToddler
+from RunningToddler import RunningToddler
 from SmartToddler import SmartToddler
 from StupidToddler import StupidToddler
 from Teacher import Teacher
@@ -14,51 +15,31 @@ class Game:
         self._time = 0
         self._toddlers = []
         self._teacher = Teacher(3, (6, 0), (6, 0), "right")
-        self._candy = (6, 12)
+        self._candy = (6, 7)
         self._initial_positions = []
-        self.initialize_players(grid_size, 6)
-
-
-    def init_pos(self, grid_size, initial_pos):
-        max_attempts = 100  # Limiter les tentatives pour éviter une boucle infinie
-        for _ in range(max_attempts):
-            y = random.randrange(3, grid_size - 3)  # Respecte une marge de 3 en haut/bas
-            x = random.randrange(0, grid_size)     # Toute la largeur est possible
-            if (x, y) not in initial_pos:
-                return (x, y)
-        raise ValueError("Impossible de trouver une position disponible.")  # Gestion d'erreur si aucune position n'est libre
-
+        self.initialize_players(grid_size, 12)
 
     def initialize_players(self, grid_size, nbToddler):
         tabToddlers =[
             AfraidToddler(0,(1,1), "right",(1,1)),
             CrazyToddler(1, (1,1), "left",(1,1)),
             StupidToddler(2, (1,1), "left",(1,1)),
-            LyingToddler(3, (1,1), "left",(1,1)),
+            RunningToddler(3, (1,1), "left",(1,1)),
             SmartToddler(4, (1,1), "left",(1,1)),
             HungryToddler(5, (1,1), "left",(1,1),1)
         ]
-        initial_pos=[]
+        pos = [(0,4),(12,11),(6,12),(3,5),(8,10),(12,5),(1,12),(1,9),(9,4),(9,12),(3,11),(11,8)]
 
         for i in range(nbToddler):
-            r = random.randrange(0,5)
+            if i%2 != 0 :
+                r = int((i-1)/2)
+            else :
+                r = int(i/2)
             toddler = tabToddlers[r]
             toddler.set_id(i+1)
-            table = self.init_pos(grid_size,initial_pos)
+            table = pos[i]
             toddler.set_position(table)
             toddler.set_pos_table(table)
-
-            initial_pos.append(table)  # Ajoute la table elle-même
-            adjacent_positions = [
-                (table[0] + 1, table[1]),  # Case en bas
-                (table[0] - 1, table[1]),  # Case en haut
-                (table[0], table[1] + 1),  # Case à droite
-                (table[0], table[1] - 1),  # Case à gauche
-            ]
-
-            for pos in adjacent_positions:
-                initial_pos.append(pos)
-
             self._initial_positions.append(table)
 
             if r == 5 :
