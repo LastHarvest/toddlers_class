@@ -19,36 +19,24 @@ class Game:
         self._initial_positions = []
         self.initialize_players(grid_size, 12)
 
-    def initialize_players(self, grid_size, nbToddler):
-        tabToddlers =[
-            AfraidToddler(0,(1,1), "right",(1,1)),
-            CrazyToddler(1, (1,1), "left",(1,1)),
-            StupidToddler(2, (1,1), "left",(1,1)),
-            RunningToddler(3, (1,1), "left",(1,1)),
-            SmartToddler(4, (1,1), "left",(1,1)),
-            HungryToddler(5, (1,1), "left",(1,1),1)
-        ]
-        pos = [(0,4),(12,11),(6,12),(3,5),(8,10),(12,5),(1,12),(1,9),(9,4),(9,12),(3,11),(11,8)]
 
-        for i in range(nbToddler):
-            if i%2 != 0 :
-                r = int((i-1)/2)
-            else :
-                r = int(i/2)
-            toddler = tabToddlers[r]
-            toddler.set_id(i+1)
-            table = pos[i]
-            toddler.set_position(table)
-            toddler.set_pos_table(table)
-            self._initial_positions.append(table)
+    def initialize_players(self, grid_size, nb_toddlers):
+        pos = [(0,4), (12,11), (6,12), (3,5), (8,10), (12,5), (1,12), (1,9), (9,4), (9,12), (3,11), (11,8)]
 
-            if r == 5 :
-                temp = random.randrange(10,16)
-                toddler.set_hunger(temp)
+        self._toddlers.append(AfraidToddler(0, (0, 1), "left", (0, 1), 2))
+        self._toddlers.append(AfraidToddler(1, (6, 3), "left", (6, 3), 1))
+        self._toddlers.append(CrazyToddler(2, (6, 11), "left", (6, 11), 5))
+        self._toddlers.append(CrazyToddler(3, (1, 9), "left", (1, 9), 3))
+        self._toddlers.append(HungryToddler(4, (3, 11), "left", (3, 11),5))
+        self._toddlers.append(HungryToddler(5, (10, 5), "right", (10, 5),3))
+        self._toddlers.append(RunningToddler(6, (1, 12), "left", (1, 11),10))
+        self._toddlers.append(RunningToddler(7, (9, 4), "right", (9, 4),7))
+        self._toddlers.append(SmartToddler(8, (3, 5), "left", (3, 5),9))
+        self._toddlers.append(SmartToddler(9, (8, 10), "right", (8, 10),5))
+        self._toddlers.append(StupidToddler(10, (5, 12), "left", (5, 12),4))
+        self._toddlers.append(StupidToddler(11, (10, 8), "right", (10, 8),2))
 
-            self._toddlers.append(toddler)
-
-
+        self._initial_positions = pos
 
     def get_initial_positions(self):
         return self._initial_positions
@@ -100,3 +88,30 @@ class Game:
 
     def stop_game(self):
         self._running = False
+
+    # def initialize_players(self, grid_size, nbToddler):
+    #     tabToddlers = [
+    #         AfraidToddler(0, (1, 1), "right", (1, 1)),
+    #         CrazyToddler(1, (1, 1), "left", (1, 1)),
+    #         StupidToddler(2, (1, 1), "left", (1, 1)),
+    #         RunningToddler(3, (1, 1), "left", (1, 1)),
+    #         SmartToddler(4, (1, 1), "left", (1, 1)),
+    #         HungryToddler(5, (1, 1), "left", (1, 1), 1)
+    #     ]
+    #     pos = [(0, 4), (12, 11), (6, 12), (3, 5), (8, 10), (12, 5), (1, 12), (1, 9), (9, 4), (9, 12), (3, 11),
+    #            (11, 8)]
+    #
+    #     for i in range(nbToddler):
+    #         r = i % len(tabToddlers)
+    #         toddler = tabToddlers[r]
+    #         toddler.set_id(i + 1)
+    #         table = pos[i]
+    #         toddler.set_position(table)
+    #         toddler.set_pos_table(table)
+    #         self._initial_positions.append(table)
+    #
+    #         if isinstance(toddler, HungryToddler):
+    #             temp = random.randrange(10, 16)
+    #             toddler.set_hunger(temp)
+    #
+    #         self._toddlers.append(toddler)

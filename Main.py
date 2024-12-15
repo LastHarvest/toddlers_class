@@ -2,6 +2,9 @@ import pygame
 import sys
 from time import sleep
 import time
+import os
+from reportlab.graphics.samples.excelcolors import backgroundGrey
+
 from Game import *
 
 # Initialize pygame
@@ -111,14 +114,13 @@ teachw1l = pygame.transform.scale(teachw1l, (cell_size*1.5, cell_size*1.5))
 teachw2r = pygame.transform.scale(teachw2r, (cell_size*1.5, cell_size*1.5))
 
 candy = pygame.image.load('Pictures/bonbons.png')
-table = pygame.image.load('Pictures/table.png')
+table = pygame.image.load('Pictures/table2.png')
 candy = pygame.transform.scale(candy, (cell_size*0.8, cell_size*0.8))
-table = pygame.transform.scale(table, (cell_size*1.2, cell_size*1.2))
+table = pygame.transform.scale(table, (cell_size*1.5, cell_size*1.5))
 
 
 background=pygame.image.load('Pictures/classroom3.png')
 background_image = pygame.transform.scale(background, (window_size, window_size))
-
 
 game_instance = Game(grid_size)
 font = pygame.font.Font(None, 27)
@@ -150,11 +152,19 @@ def draw_candy():
     candy_pos = game_instance.get_candy()
     pixel_pos = (candy_pos[0] * cell_size, candy_pos[1] * cell_size)
     screen.blit(candy, (pixel_pos[0], pixel_pos[1]))
+    flower = pygame.image.load('Pictures/flower.png')
+    flower = pygame.transform.scale(flower, (cell_size*0.8, cell_size*0.8))
+    # screen.blit(flower, (0, 7))
+    library = pygame.image.load('Pictures/library.png')
+    library = pygame.transform.scale(library, (cell_size*1.2, cell_size*1.2))
+    screen.blit(library, (0, 0))
 
 def draw_players():
     """Draw the toddlers and the teacher on the grid."""
     initial_positions = game_instance.get_initial_positions()
-    for pos in initial_positions:
+    toddlers = game_instance.get_toddlers()
+    for t in toddlers:
+        pos = t.get_pos_table()
         pixel_pos = (pos[0] * cell_size, pos[1] * cell_size)
         screen.blit(table, (pixel_pos[0], pixel_pos[1]))
 
@@ -215,16 +225,38 @@ def draw_players():
 
 def draw_end_game():
     """Draw the end game screen with players' points."""
-    screen.fill((0, 0, 0))
-    screen.blit(background_image, (0, 0))
-    draw_candy()
-    #draw_player_points()
-    #draw_players()
+    screen.blit(background_image, (0, 0))  # Draw the background image first
 
+    # Load all crying images
+    crying_images = []
+    for filename in os.listdir('Pictures/crying'):
+        if filename.endswith('.png'):
+            image = pygame.image.load(os.path.join('Pictures/crying', filename))
+            image = pygame.transform.scale(image, (cell_size, cell_size))
+            crying_images.append(image)
+
+    # Calculate the total width of all images combined
+    total_width = len(crying_images) * cell_size
+    start_x = (window_size - total_width) // 2
+
+    # Blit all crying images in a line centered at the top
+    for i, image in enumerate(crying_images):
+        screen.blit(image, (start_x + i * cell_size, 0))
+
+    # Load and scale the angry teacher image
+    library = pygame.image.load('Pictures/angry_teacher.png')
+    library = pygame.transform.scale(library, (cell_size * 3, cell_size * 3))
+
+    # Calculate the position to center the image at the bottom
+    library_x = (window_size - library.get_width()) // 2
+    library_y = window_size - library.get_height()
+
+    # Blit the angry teacher image centered at the bottom
+    screen.blit(library, (library_x, library_y))
+    total_candy = 0
     y_offset = 100
-    toddlers_types=["Afraid Toddler","Crazy Toddler","Hungry Toddler","Running Toddler","Smart Toddler","Stupid Toddler"]
     for toddler in game_instance.get_toddlers():
-        points_text = f"{toddlers_types[toddler.TYPE]} Points: {toddler.get_points()}"
+        points_text = f"Toddler {toddler.get_id()} Points: {toddler.get_points()}"
         draw_text_with_contour(points_text, font, (0, 0, 0), (255, 255, 255), window_size // 2, y_offset)
         y_offset += 30
 
@@ -244,7 +276,7 @@ while True:
             if event.key == pygame.K_s:
                 game_instance.stop_game()
     while game_instance.get_running():
-        if game_instance.get_time()==21:
+        if game_instance.get_time()==33:
             game_instance.stop_game()
 
         for event in pygame.event.get():

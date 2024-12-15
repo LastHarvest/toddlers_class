@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c47c2668-6913-41d6-9e1d-891b3cda6b06" name="Changes" comment="" />
+    <list default="true" id="c47c2668-6913-41d6-9e1d-891b3cda6b06" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Pictures/angry_teacher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pictures/classroom4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pictures/crying/afraidc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pictures/crying/crazyc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pictures/crying/hungryc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pictures/crying/lyingc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pictures/crying/smartc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pictures/crying/stupidc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pictures/flower.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pictures/library.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pictures/table2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AfraidToddler.py" beforeDir="false" afterPath="$PROJECT_DIR$/AfraidToddler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RunningToddler.py" beforeDir="false" afterPath="$PROJECT_DIR$/RunningToddler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Teacher.py" beforeDir="false" afterPath="$PROJECT_DIR$/Teacher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Toddler.py" beforeDir="false" afterPath="$PROJECT_DIR$/Toddler.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,12 +50,12 @@
     &quot;assignee&quot;: &quot;alderaan11&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/LastHarvest/toddlers_class.git&quot;,
-    &quot;accountId&quot;: &quot;7fd2555c-a287-4472-b1d8-010949aa5dd9&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:LastHarvest/toddlers_class.git",
+    "accountId": "cc4a1881-4e63-4efe-9bce-c11ed0df735d"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -61,6 +80,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "develop",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/alderaan/Desktop/POA/toddlers_class/Pictures/crying",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -72,11 +92,16 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Pictures/crying" />
+      <recent name="$PROJECT_DIR$/Pictures" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.145" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.145" />
+        <option value="bundled-python-sdk-6a3326d57233-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.24807.21" />
       </set>
     </attachedChunks>
   </component>
@@ -105,9 +130,9 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/toddlers_class$Main.coverage" NAME="Main Coverage Results" MODIFIED="1734223718966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/toddlers_class$Main.coverage" NAME="Main Coverage Results" MODIFIED="1734186307849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/toddlers_class$AfraidToddler.coverage" NAME="AfraidToddler Coverage Results" MODIFIED="1734022200680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/toddlers_class$Game.coverage" NAME="Game Coverage Results" MODIFIED="1734223616517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/toddlers_class$Game.coverage" NAME="Game Coverage Results" MODIFIED="1734177089224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/toddlers_class$Teacher.coverage" NAME="Teacher Coverage Results" MODIFIED="1734089610835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

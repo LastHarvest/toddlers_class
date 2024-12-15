@@ -3,14 +3,16 @@ from Toddler import Toddler
 
 class SmartToddler(Toddler):
     TYPE = 4
-    def __init__(self, id, position, direction,pos_table):
-        super().__init__(id, position, direction, pos_table)
+    def __init__(self, id, position, direction,pos_table,cooldown):
+        super().__init__(id, position, direction, pos_table, cooldown)
         self._initial_position = position
 
     def strategy(self, candy, teacher, tables):
-        if self._has_candy:
+        if self._cooldown != 0: self._cooldown -=1
+        elif self._has_candy:
             if self.at_table():
                 self._has_candy = False
+                self._cooldown = self._rest
             else:
                 self.move_to(self._pos_table, tables)
         else:
