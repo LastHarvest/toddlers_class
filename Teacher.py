@@ -9,6 +9,9 @@ class Teacher(Human):
         super().__init__(id, position, direction, pos_table)
         self._nb_caught = 0
 
+
+
+
     def get_position(self):
         return self._position
 
@@ -171,4 +174,4 @@ class Teacher(Human):
         self._direction = "down_right"
 
     def caught(self, t):
-        return self.next_to(t)
+       return self.next_to(t)
