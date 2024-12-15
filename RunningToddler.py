@@ -9,17 +9,20 @@ from Toddler import Toddler
 class RunningToddler(Toddler):
     TYPE = 4
 
-    def __init__(self, id, position, direction, pos_table):
-        super().__init__(id, position, direction, pos_table)
+    def __init__(self, id, position, direction, pos_table,cooldown):
+        super().__init__(id, position, direction, pos_table, cooldown)
 
     def strategy(self, candy, teacher, tables):
         print(f"RunningToddler: I'm cadny to the table{self._position}")
         print(f"Candy: {candy}")
         print(f"Has candy: {self._has_candy}")
-        if self._has_candy:
+        if self._cooldown != 0: self._cooldown -=1
+
+        elif self._has_candy:
             print(f"RunningToddler: I'me table{self._pos_table}")
             if self.at_table():
                 self._has_candy = False
+                self._cooldown = self._rest
             else:
                 print("RunningToddler: I'm running to the table")
                 self.move_to(self._pos_table, tables)

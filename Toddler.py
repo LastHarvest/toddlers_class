@@ -3,12 +3,14 @@ from abc import ABC, abstractmethod
 
 class Toddler(Human):
 
-    def __init__(self, id,position, direction, pos_table):
+    def __init__(self, id,position, direction, pos_table, cooldown):
         super().__init__(id,position, direction, pos_table)
         self._type = type
         self._nb_candy = 0
         self._has_candy = False
         self._lost_candy = 0
+        self._cooldown = cooldown
+        self._rest = cooldown
 
     def lose_candy_point(self):
         self._lost_candy += 1

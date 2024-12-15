@@ -7,8 +7,8 @@ from Toddler import Toddler
 class LyingToddler(Toddler):
     TYPE = 3
 
-    def __init__(self, id, position, direction, pos_table):
-        super().__init__(id, position, direction, pos_table)
+    def __init__(self, id, position, direction, pos_table, cooldown):
+        super().__init__(id, position, direction, pos_table, cooldown)
         self._truth = False
 
     def strategy(self, candy, teacher, tables):
