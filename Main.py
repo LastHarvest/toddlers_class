@@ -98,17 +98,17 @@ toddlersPic = [[tod1, tod1w1r, tod1w1l, tod1w2r, tod1w2l, tod1w1rc, tod1w1lc, to
 
 for pic in toddlersPic:
     for i in range(11):
-        pic[i] = pygame.transform.scale(pic[i], (cell_size*1.1, cell_size*1.1))
+        pic[i] = pygame.transform.scale(pic[i], (cell_size*1.2, cell_size*1.2))
 
 teach = pygame.image.load('Pictures/characters/teach.png')
 teachw1r = pygame.image.load('Pictures/characters/teachw1r.png')
 teachw1l = pygame.image.load('Pictures/characters/teachw1l.png')
 teachw2r = pygame.image.load('Pictures/characters/teachw2r.png')
 teachw2l = pygame.image.load('Pictures/characters/teachw2l.png')
-teach = pygame.transform.scale(teach, (cell_size*1.2, cell_size*1.2))
-teachw1r = pygame.transform.scale(teachw1r, (cell_size*1.2, cell_size*1.2))
-teachw1l = pygame.transform.scale(teachw1l, (cell_size*1.2, cell_size*1.2))
-teachw2r = pygame.transform.scale(teachw2r, (cell_size*1.2, cell_size*1.2))
+teach = pygame.transform.scale(teach, (cell_size*1.5, cell_size*1.5))
+teachw1r = pygame.transform.scale(teachw1r, (cell_size*1.5, cell_size*1.5))
+teachw1l = pygame.transform.scale(teachw1l, (cell_size*1.5, cell_size*1.5))
+teachw2r = pygame.transform.scale(teachw2r, (cell_size*1.5, cell_size*1.5))
 
 candy = pygame.image.load('Pictures/bonbons.png')
 table = pygame.image.load('Pictures/table.png')
@@ -117,7 +117,6 @@ table = pygame.transform.scale(table, (cell_size*1.2, cell_size*1.2))
 
 
 background=pygame.image.load('Pictures/classroom3.png')
-print(background)
 background_image = pygame.transform.scale(background, (window_size, window_size))
 
 
@@ -216,14 +215,16 @@ def draw_players():
 
 def draw_end_game():
     """Draw the end game screen with players' points."""
-    screen.fill((255, 255, 255))
+    screen.fill((0, 0, 0))
+    screen.blit(background_image, (0, 0))
     draw_candy()
     #draw_player_points()
-    draw_players()
+    #draw_players()
 
     y_offset = 100
+    toddlers_types=["Afraid Toddler","Crazy Toddler","Hungry Toddler","Running Toddler","Smart Toddler","Stupid Toddler"]
     for toddler in game_instance.get_toddlers():
-        points_text = f"Toddler {toddler.get_id()} Points: {toddler.get_points()}"
+        points_text = f"{toddlers_types[toddler.TYPE]} Points: {toddler.get_points()}"
         draw_text_with_contour(points_text, font, (0, 0, 0), (255, 255, 255), window_size // 2, y_offset)
         y_offset += 30
 
